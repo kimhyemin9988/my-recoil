@@ -1,5 +1,7 @@
 import { Todos } from './Atoms';
 import {
+    useRecoilState,
+    useRecoilValue,
     useSetRecoilState,
 } from "recoil";
 import { useForm } from "react-hook-form";
@@ -14,7 +16,7 @@ const CreateToDo = () => {
         //새로운 입력값 newTodo는 text
         setTodosArray((oldTodos) => (
             //이전에 저장된 값 value
-            [{ text: Todos, id: Date.now(), category: "Todo", value:"Todo"}, ...oldTodos]
+            [{ text: Todos, id: Date.now(), category: "Todo"}, ...oldTodos]
         ));
         setValue("Todos", "");
     };

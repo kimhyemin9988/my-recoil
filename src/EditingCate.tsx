@@ -16,12 +16,13 @@ const EditingCate = () => {
   /* output : form의 모든 객체 */
   /*   console.log(register("Todos"))   output : {name: 'Todos', onChange: ƒ, onBlur: ƒ, ref: ƒ};
     console.log(watch("Todos"));    output : 사과*/
-  const onSubmitCate = ( {Category} : any) => {
-    setoldCategory((oldCategory) => (
-      [{ value: Category, label: Category }, ...oldCategory]
-    ));
+  const onSubmitCate = ({ Category }: any) => {
+    setoldCategory((oldCategory) => {
+      return (
+        [{ value: Category, label: Category }, ...oldCategory]);
+    });
+    toggleEditing();
   }
-  console.log(oldCategory);
 
   return (
     <>
