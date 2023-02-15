@@ -35,7 +35,7 @@ const TodoInput = styled.input`
       box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
     }
 `
-const SubmitBtn = styled.input`
+export const SubmitInput = styled.input`
     background-color: white;
     color: #503F47;
     border-radius: 0.3rem;
@@ -76,7 +76,7 @@ const CreateToDo = () => {
                         },
                     }
                     )}></TodoInput>
-                <SubmitBtn type="submit" />
+                <SubmitInput type="submit" />
             </CreateToForm>
             <ErrorM>{errors.Todos?.message}</ErrorM>
         </Container>

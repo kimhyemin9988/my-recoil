@@ -5,7 +5,8 @@ import { Category, Todos } from '../Atoms';
 import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
 import Todo from '../Todo';
-import { exitCode } from 'process';
+import { AsBtn } from './SelectCategory';
+
 
 export interface categories {
   Category: string;
@@ -78,11 +79,11 @@ const EditingCategory = () => {
                 message: "공백을 입력할 수 없습니다",
               },
             })}></input>
-          <button type="submit">추가</button>
-          <button onClick={addCategory}>추가 취소</button>
+          <AsBtn as="button" type="submit">추가</AsBtn>
+          <AsBtn as="button" onClick={addCategory}>추가 취소</AsBtn>
           <span>{errors.Category?.message}</span>
         </form>
-        : <button onClick={addCategory}>카테고리 추가</button>}
+        : <AsBtn as="button" onClick={addCategory}>카테고리 추가</AsBtn>}
       {deleteBoolean ?
         <>
           <h4>삭제할 카테고리를 선택하세요</h4>
@@ -90,14 +91,14 @@ const EditingCategory = () => {
             <Select options={oldCategory}
               onChange={handleChange} // 선택한 obj return
             />
-            <button type="submit">삭제</button>
-            <button onClick={deleteCategory}>삭제취소</button>
+            <AsBtn as="button" type="submit">삭제</AsBtn>
+            <AsBtn as="button" onClick={deleteCategory}>삭제취소</AsBtn>
           </form>
         </>
-        : <button onClick={deleteCategory}>카테고리 삭제</button>}
-      <button>
+        : <AsBtn as="button" onClick={deleteCategory}>카테고리 삭제</AsBtn>}
+      <AsBtn as="button">
         <Link to="/">홈으로</Link>
-      </button>
+      </AsBtn>
     </>
   );
 }

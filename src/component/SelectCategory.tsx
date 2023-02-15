@@ -5,6 +5,14 @@ import Select from 'react-select';
 import { Category, Todos } from '../Atoms';
 import TodoRender from './TodoRender';
 import { Link } from 'react-router-dom';
+import { SubmitInput } from "./CreateToDo";
+import styled from 'styled-components';
+
+export const AsBtn = styled(SubmitInput)`
+    width: 10%;
+    height: 10%;
+`
+
 const SelectCategory = () => {
     const [oldCategory, setoldCategory] = useRecoilState(Category);
     const [handleValue, setHandleValue] = useState();
@@ -21,9 +29,9 @@ const SelectCategory = () => {
             <Select options={oldCategory}
                 onChange={handleChange} // 선택한 obj return
             />
-            <button type="button">
+            <AsBtn as="button" type="button">
                 <Link to="category">카테고리 목록 수정</Link>
-            </button>
+            </AsBtn>
             <hr />
             <ul>
                 {todosArray && todosArray.map((toDo) => {

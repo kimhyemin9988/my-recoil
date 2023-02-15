@@ -2,6 +2,7 @@ import { useState } from "react";
 import Select from 'react-select';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { Category, Todos, IToDo } from "../Atoms";
+import { AsBtn } from "./SelectCategory";
 
 const TodoRender = ({ text, id, category }: IToDo) => {
   //선택한 목록의 아이디
@@ -35,7 +36,7 @@ const TodoRender = ({ text, id, category }: IToDo) => {
     togglecategories();
   }
   /* 삭제 */
-  const deleteList = (event: any) =>{
+  const deleteList = (event: any) => {
     event.preventDefault();
     setTodosArray((oldArray) => {
       const targetIndex = oldArray.findIndex((item) => item.id === id); //해당하는 목록의 id
@@ -55,8 +56,12 @@ const TodoRender = ({ text, id, category }: IToDo) => {
         </form>
         : (
           <>
-            <button onClick={deleteList}>삭제</button>
-            <button onClick={togglecategories}>카테고리 변경</button>
+            <AsBtn as="button"
+              onClick={deleteList}>삭제</AsBtn
+            >
+            <AsBtn as="button"
+              onClick={togglecategories}>카테고리 변경</AsBtn
+            >
           </>)}
     </>
   );
