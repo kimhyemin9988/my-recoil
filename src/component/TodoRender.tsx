@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Select from 'react-select';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { Category, Todos, IToDo } from "./Atoms";
+import { Category, Todos, IToDo } from "../Atoms";
 
 const TodoRender = ({ text, id, category }: IToDo) => {
   //선택한 목록의 아이디

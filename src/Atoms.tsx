@@ -2,7 +2,7 @@ import { atom, selector } from "recoil";
 import { recoilPersist } from 'recoil-persist'
 
 const { persistAtom } = recoilPersist({
-    key:"first",
+    key: "first",
     storage: localStorage,
 });
 
@@ -26,4 +26,3 @@ export const Category = atom<ICategory[]>({
     default: [{ value: "Todo", label: "Todo" }, { value: "Done", label: "Done" }, { value: "Doing", label: "Doing" }],
     effects_UNSTABLE: [persistAtom],
 })
-    //선택지 제한 "To_Do" | "Doing" | "Done" // 사용자가 옵션 추가 가능

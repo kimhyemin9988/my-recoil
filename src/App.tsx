@@ -35,8 +35,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: normal;
-	background-color: white;
-	color:black;
+	background-color: #E3D6E7;
+	color:#62403F;
 }
 ol, ul {
 	list-style: none;
@@ -59,12 +59,12 @@ a{
 }
 `
 const App = () => {
-  return (
-    <>
-      <GlobalStyle />
-      <Outlet></Outlet>
-    </>
-  );
+	return (
+		<>
+			<GlobalStyle />
+			<Outlet></Outlet>
+		</>
+	);
 }
 
 export default App;

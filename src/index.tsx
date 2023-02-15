@@ -9,6 +9,6 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <RecoilRoot>
-     <RouterProvider router={RouterApp} />
+    <RouterProvider router={RouterApp} />
   </RecoilRoot>
 );

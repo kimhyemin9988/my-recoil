@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { Category, Todos } from './Atoms';
+import { Category, Todos } from '../Atoms';
 import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
-import Todo from './Todo';
+import Todo from '../Todo';
 import { exitCode } from 'process';
 
 export interface categories {
@@ -12,7 +12,7 @@ export interface categories {
   /*   categories:string; */
 }
 
-const EditingCate = () => {
+const EditingCategory = () => {
   const navigate = useNavigate();
   const { register, watch, handleSubmit, formState: { errors },setValue } = useForm<categories>();
   const [oldCategory, setoldCategory] = useRecoilState(Category);
@@ -101,6 +101,6 @@ const EditingCate = () => {
     </>
   );
 }
-export default EditingCate;
+export default EditingCategory;
 //목록안에 list가 있는 경우 카테고리를 삭제 할 수 없음
 //카테고리 삭제나 추가 시 다른 페이지로 이동 후 제출하면 홈페이지로 돌아오도록

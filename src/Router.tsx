@@ -1,8 +1,8 @@
-import { HashRouter as Router, Routes, Route, createBrowserRouter, useParams } from 'react-router-dom';
+import { HashRouter as Router, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Todo from './Todo';
-import EditingCate from "./EditingCate";
-import NotFound from './Notfound';
+import EditingCategory from "./component/EditingCategory";
+import NotFound from './component/Notfound';
 
 const RouterApp = createBrowserRouter([
     {
@@ -15,7 +15,7 @@ const RouterApp = createBrowserRouter([
             },
             {
                 path: "category",
-                element: <EditingCate/>,
+                element: <EditingCategory />,
             }
         ],
         errorElement: <NotFound></NotFound>,
