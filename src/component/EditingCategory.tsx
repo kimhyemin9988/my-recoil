@@ -6,8 +6,8 @@ import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
 import Todo from '../Todo';
 import { AsBtn } from './CategoryAndList';
-
-
+import { Container } from './CreateToDo';
+import { Main } from "../Todo";
 export interface categories {
   Category: string;
   /*   categories:string; */
@@ -15,7 +15,7 @@ export interface categories {
 
 const EditingCategory = () => {
   const navigate = useNavigate();
-  const { register, watch, handleSubmit, formState: { errors },setValue } = useForm<categories>();
+  const { register, watch, handleSubmit, formState: { errors }, setValue } = useForm<categories>();
   const [oldCategory, setoldCategory] = useRecoilState(Category);
   const [addBoolean, setaddCategory] = useState(false);
   const [deleteBoolean, setdeleteCategory] = useState(false);
@@ -54,11 +54,11 @@ const EditingCategory = () => {
   const onSubmit = (event: any) => {
     event.preventDefault();
     //*error, 필터하면 빈 배열이 남아있어 !==null로 하면 전부 true가 됨
-    if( todosArray.filter((item)=>item.category == handleValue).length !== 0){
+    if (todosArray.filter((item) => item.category == handleValue).length !== 0) {
       alert("해당하는 카테고리 안에 목록이 있습니다! 삭제할 수 없습니다");
       navigate("/");
     }
-    else{
+    else {
       setoldCategory((oldArray) => {
         const targetIndex = oldArray.findIndex((item) => item.value === handleValue);
         return ([...oldArray.slice(0, targetIndex),
@@ -70,35 +70,39 @@ const EditingCategory = () => {
 
   return (
     <>
-      {addBoolean ?
-        <form onSubmit={handleSubmit(onSubmitCate)}>
-          <input placeholder=
-            "추가할 카테고리를 입력하세요" {...register("Category", {
-              required: {
-                value: true,
-                message: "공백을 입력할 수 없습니다",
-              },
-            })}></input>
-          <AsBtn as="button" type="submit">추가</AsBtn>
-          <AsBtn as="button" onClick={addCategory}>추가 취소</AsBtn>
-          <span>{errors.Category?.message}</span>
-        </form>
-        : <AsBtn as="button" onClick={addCategory}>카테고리 추가</AsBtn>}
-      {deleteBoolean ?
-        <>
-          <h4>삭제할 카테고리를 선택하세요</h4>
-          <form onSubmit={onSubmit}>
-            <Select options={oldCategory}
-              onChange={handleChange} // 선택한 obj return
-            />
-            <AsBtn as="button" type="submit">삭제</AsBtn>
-            <AsBtn as="button" onClick={deleteCategory}>삭제취소</AsBtn>
-          </form>
-        </>
-        : <AsBtn as="button" onClick={deleteCategory}>카테고리 삭제</AsBtn>}
-      <AsBtn as="button">
-        <Link to="/">홈으로</Link>
-      </AsBtn>
+      <Main>
+        <Container>
+          <AsBtn as="button">
+            <Link to="/">홈으로</Link>
+          </AsBtn>
+          {addBoolean ?
+            <form onSubmit={handleSubmit(onSubmitCate)}>
+              <input placeholder=
+                "추가할 카테고리를 입력하세요" {...register("Category", {
+                  required: {
+                    value: true,
+                    message: "공백을 입력할 수 없습니다",
+                  },
+                })}></input>
+              <AsBtn as="button" type="submit">추가</AsBtn>
+              <AsBtn as="button" onClick={addCategory}>추가 취소</AsBtn>
+              <span>{errors.Category?.message}</span>
+            </form>
+            : <AsBtn as="button" onClick={addCategory}>카테고리 추가</AsBtn>}
+          {deleteBoolean ?
+            <>
+              <h4>삭제할 카테고리를 선택하세요</h4>
+              <form onSubmit={onSubmit}>
+                <Select options={oldCategory}
+                  onChange={handleChange} // 선택한 obj return
+                />
+                <AsBtn as="button" type="submit">삭제</AsBtn>
+                <AsBtn as="button" onClick={deleteCategory}>삭제취소</AsBtn>
+              </form>
+            </>
+            : <AsBtn as="button" onClick={deleteCategory}>카테고리 삭제</AsBtn>}
+        </Container>
+      </Main>
     </>
   );
 }

@@ -16,7 +16,7 @@ const Title = styled.span`
     font-weight: 800;
     color: white;
 `
-const Main = styled.div`
+export const Main = styled.div`
     width: 100%;
     display: flex;
     align-items: center;

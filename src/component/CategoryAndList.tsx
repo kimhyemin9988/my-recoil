@@ -28,6 +28,8 @@ const Ul = styled.ul`
 const Li = styled.li`
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 `
 const TodoP = styled.p`
     font-size: 15px;

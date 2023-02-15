@@ -8,10 +8,15 @@ import { AsBtn } from "./CategoryAndList";
 import { SubmitInput } from "./CreateToDo";
 
 const MiniForm = styled.form`
-  width: 100px;
+  width:350px;
   display: flex;
+  margin: 5px;
 `
-
+const AsBtnMargin = styled(SubmitInput)`
+    width: 100px;
+    margin: 0px;
+    margin-left:5px;
+`
 
 const TodoRender = ({ text, id, category }: IToDo) => {
   //선택한 목록의 아이디
@@ -62,8 +67,8 @@ const TodoRender = ({ text, id, category }: IToDo) => {
             <Select options={oldCategory}
               onChange={handleChange} // 선택한 obj return
             />
-            <AsBtn type="submit" />
-            <AsBtn as="button" type="button" onClick={togglecategories}>취소</AsBtn>
+            <AsBtnMargin type="submit" />
+            <AsBtnMargin as="button" type="button" onClick={togglecategories}>취소</AsBtnMargin>
           </MiniForm>
         </>)
         : (
