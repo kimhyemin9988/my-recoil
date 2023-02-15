@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from "react-hook-form";
-import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import Select from 'react-select';
 import { Category, Todos } from '../Atoms';
 import TodoRender from './TodoRender';
 import { Link } from 'react-router-dom';
-import { SubmitInput } from "./CreateToDo";
+import { SubmitInput, Container } from "./CreateToDo";
 import styled from 'styled-components';
-import { Container } from "./CreateToDo";
 
 const MainContainer = styled(Container)`
     width: 80%;
@@ -36,7 +34,7 @@ const TodoP = styled.p`
     font-weight: 700;
 `
 const CategoryAndList = () => {
-    const [oldCategory, setoldCategory] = useRecoilState(Category);
+    const oldCategory =  useRecoilValue(Category);
     const [handleValue, setHandleValue] = useState();
     const todosArray = useRecoilValue(Todos);
     // set value for default selection

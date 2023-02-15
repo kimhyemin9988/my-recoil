@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Select from 'react-select';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { Category, Todos, IToDo } from "../Atoms";
-import { AsBtn } from "./CategoryAndList";
 import { SubmitInput } from "./CreateToDo";
 
 const MiniForm = styled.form`
@@ -88,12 +86,3 @@ export default TodoRender;
 //1) id로 카테고리를 바꿀 todo를 찾기, 카테고리 변경 버튼
 //2) setRecoilState를 이용하면 안의 값을 바로 바꿀 수 있음
 //3)선택한 option의 value
-
-{/* <form>
-  <select onSubmit={handleSubmit(onSubmitCateOption)}>
-    <option value="Todo">To-do</option>
-    <option value="Doing">doing</option>
-    <option value="Done">done</option>
-  </select>
-  <input type="submit" />
-</form> */}

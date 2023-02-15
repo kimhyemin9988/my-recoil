@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { Category, Todos } from '../Atoms';
 import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
-import Todo from '../Todo';
 import { AsBtn } from './CategoryAndList';
 import { Container } from './CreateToDo';
 import { Main } from "../Todo";
@@ -15,12 +14,12 @@ export interface categories {
 
 const EditingCategory = () => {
   const navigate = useNavigate();
-  const { register, watch, handleSubmit, formState: { errors }, setValue } = useForm<categories>();
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm<categories>();
   const [oldCategory, setoldCategory] = useRecoilState(Category);
   const [addBoolean, setaddCategory] = useState(false);
   const [deleteBoolean, setdeleteCategory] = useState(false);
 
-  const [todosArray, setTodosArray] = useRecoilState(Todos);
+  const todosArray = useRecoilValue(Todos);
 
   /* output : form의 모든 객체 */
   /*   console.log(register("Todos"))   output : {name: 'Todos', onChange: ƒ, onBlur: ƒ, ref: ƒ};
@@ -54,7 +53,7 @@ const EditingCategory = () => {
   const onSubmit = (event: any) => {
     event.preventDefault();
     //*error, 필터하면 빈 배열이 남아있어 !==null로 하면 전부 true가 됨
-    if (todosArray.filter((item) => item.category == handleValue).length !== 0) {
+    if (todosArray.filter((item) => item.category === handleValue).length !== 0) {
       alert("해당하는 카테고리 안에 목록이 있습니다! 삭제할 수 없습니다");
       navigate("/");
     }
