@@ -5,6 +5,7 @@ import { Category, Todos, IToDo } from "./Atoms";
 
 const TodoRender = ({ text, id, category }: IToDo) => {
   //선택한 목록의 아이디
+
   const setTodosArray = useSetRecoilState(Todos);
 
   /* 카테고리 변경 on off */

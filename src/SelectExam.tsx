@@ -3,8 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import { atom, useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import Select from 'react-select';
 import { Category, Todos } from './Atoms';
-import EditingCate from './EditingCate';
 import TodoRender from './TodoRender';
+import { Link } from 'react-router-dom';
 const SelectExam = () => {
     const [oldCategory, setoldCategory] = useRecoilState(Category);
     const [handleValue, setHandleValue] = useState();
@@ -21,16 +21,18 @@ const SelectExam = () => {
             <Select options={oldCategory}
                 onChange={handleChange} // 선택한 obj return
             />
-            <EditingCate></EditingCate>
+            <button type="button">
+                <Link to="category">카테고리 목록 수정</Link>
+            </button>
             <hr />
             <ul>
                 {todosArray && todosArray.map((toDo) => {
-                const { category } = toDo;
-                if(handleValue === category)
-                return (
-                <li key={toDo.id}>{toDo.text}
-                    <TodoRender {...toDo}></TodoRender>
-                </li>);
+                    const { category } = toDo;
+                    if (handleValue === category)
+                        return (
+                            <li key={toDo.id}>{toDo.text}
+                                <TodoRender {...toDo}></TodoRender>
+                            </li>);
                 })}
             </ul>
         </>
