@@ -16,7 +16,7 @@ const RouterApp = createBrowserRouter([
             {
                 path: "category",
                 element: <EditingCategory />,
-            }
+            },
         ],
         errorElement: <NotFound></NotFound>,
     }], { basename: "/my-recoil/" });

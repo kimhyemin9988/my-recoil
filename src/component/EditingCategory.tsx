@@ -5,7 +5,7 @@ import { Category, Todos } from '../Atoms';
 import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
 import Todo from '../Todo';
-import { AsBtn } from './SelectCategory';
+import { AsBtn } from './CategoryAndList';
 
 
 export interface categories {

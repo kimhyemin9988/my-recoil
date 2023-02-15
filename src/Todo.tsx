@@ -1,5 +1,5 @@
 import CreateToDo from './component/CreateToDo';
-import SelectCategory from './component/SelectCategory';
+import CategoryAndList from './component/CategoryAndList';
 import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 
@@ -18,7 +18,6 @@ const Title = styled.span`
 `
 const Main = styled.div`
     width: 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -35,7 +34,7 @@ const Todo = () => {
       <Main>
         <CreateToDo></CreateToDo>
         <hr />
-        <SelectCategory></SelectCategory>
+        <CategoryAndList></CategoryAndList>
       </Main>
     </>
   );
