@@ -22,17 +22,27 @@ const TodoRender = ({ text, id, category }: IToDo) => {
     setHandleValue(() => value);
   }
   /* 제출 *///React.MouseEvent<HTMLButtonElement>
-  const onSubmit = (event : any) => {
+  const onSubmit = (event: any) => {
     event.preventDefault();
     setTodosArray((oldArray) => {
       const targetIndex = oldArray.findIndex((item) => item.id === id); //해당하는 목록의 id
-      const newTodo = { text, id, category : handleValue as any };
+      const newTodo = { text, id, category: handleValue as any };
       return ([...oldArray.slice(0, targetIndex),
         newTodo,
       ...oldArray.slice(targetIndex + 1)]);
     });
     togglecategories();
   }
+  /* 삭제 */
+  const deleteList = (event: any) =>{
+    event.preventDefault();
+    setTodosArray((oldArray) => {
+      const targetIndex = oldArray.findIndex((item) => item.id === id); //해당하는 목록의 id
+      return ([...oldArray.slice(0, targetIndex),
+      ...oldArray.slice(targetIndex + 1)]);
+    });
+  }
+
   return (
     <>
       {cateSelect ?
@@ -42,7 +52,11 @@ const TodoRender = ({ text, id, category }: IToDo) => {
           />
           <input type="submit" />
         </form>
-        : (<button onClick={togglecategories}>카테고리 변경</button>)}
+        : (
+          <>
+            <button onClick={deleteList}>삭제</button>
+            <button onClick={togglecategories}>카테고리 변경</button>
+          </>)}
     </>
   );
 };
