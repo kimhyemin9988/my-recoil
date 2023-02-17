@@ -37,6 +37,7 @@ body {
 	line-height: normal;
 	background-color: #E3D6E7;
 	color:#62403F;
+	font-family: "LINESeedKR-Bd", "Open Sans", "Helvetica Neue", sans-serif;
 }
 ol, ul {
 	list-style: none;
