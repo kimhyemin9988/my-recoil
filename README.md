@@ -7,18 +7,16 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 분류된 할 일을 다른 카테고리로 변경할 수 있습니다.
 모든 data는 local storage에 저장됩니다.
 
-# [ PC Layout]![카테고리추가삭제](https://user-images.githubusercontent.com/110611596/228088654-c77f7691-48b1-42c8-967b-83a5651bcb6e.gif)
+# [ PC Layout]
 
 
 <img width="960" alt="recoil" src="https://user-images.githubusercontent.com/110611596/228089703-983047a6-bf2b-4fe6-b2ae-0e2c71dbf88e.png">
 
 
+https://user-images.githubusercontent.com/110611596/228090012-5d222a0e-808f-4ad1-8d76-80adb2a9d93b.mp4
 
 https://user-images.githubusercontent.com/110611596/228089745-142b129b-5b4a-41d4-9044-d73f8a141f12.mp4
 
-
-
-https://user-images.githubusercontent.com/110611596/228090012-5d222a0e-808f-4ad1-8d76-80adb2a9d93b.mp4
 
 
 
