@@ -12,12 +12,13 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 
 <img width="960" alt="recoil" src="https://user-images.githubusercontent.com/110611596/228089703-983047a6-bf2b-4fe6-b2ae-0e2c71dbf88e.png">
 
+<입력 삭제>
 
-https://user-images.githubusercontent.com/110611596/228090012-5d222a0e-808f-4ad1-8d76-80adb2a9d93b.mp4
+![입력1-_online-video-cutter com_](https://user-images.githubusercontent.com/110611596/228092009-d91d167d-f74e-4b05-a97c-c5b9767eea75.gif)
 
-https://user-images.githubusercontent.com/110611596/228089745-142b129b-5b4a-41d4-9044-d73f8a141f12.mp4
+<카테고리 추가 삭제>
 
-
+![카테고리추가삭제1-_online-video-cutter com_](https://user-images.githubusercontent.com/110611596/228092052-646fb62f-6886-4247-95f9-145e3570df9d.gif)
 
 
 # [ Mobile Layout]
