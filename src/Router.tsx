@@ -19,6 +19,6 @@ const RouterApp = createBrowserRouter([
             },
         ],
         errorElement: <NotFound></NotFound>,
-    }], { basename: "/my-recoil/" });
+    }], { basename: "/my-recoil" });
 
 export default RouterApp;

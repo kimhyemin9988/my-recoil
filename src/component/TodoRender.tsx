@@ -17,7 +17,6 @@ const AsBtnMargin = styled(SubmitInput)`
 `
 
 const TodoRender = ({ text, id, category }: IToDo) => {
-  //선택한 목록의 아이디
 
   const setTodosArray = useSetRecoilState(Todos);
 
@@ -35,11 +34,11 @@ const TodoRender = ({ text, id, category }: IToDo) => {
     const { value } = e; // value ==  "Todo"
     setHandleValue(() => value);
   }
-  /* 제출 *///React.MouseEvent<HTMLButtonElement>
+  /* 제출 */
   const onSubmit = (event: any) => {
     event.preventDefault();
     setTodosArray((oldArray) => {
-      const targetIndex = oldArray.findIndex((item) => item.id === id); //해당하는 목록의 id
+      const targetIndex = oldArray.findIndex((item) => item.id === id);
       const newTodo = { text, id, category: handleValue as any };
       return ([...oldArray.slice(0, targetIndex),
         newTodo,
@@ -51,7 +50,7 @@ const TodoRender = ({ text, id, category }: IToDo) => {
   const deleteList = (event: any) => {
     event.preventDefault();
     setTodosArray((oldArray) => {
-      const targetIndex = oldArray.findIndex((item) => item.id === id); //해당하는 목록의 id
+      const targetIndex = oldArray.findIndex((item) => item.id === id); 
       return ([...oldArray.slice(0, targetIndex),
       ...oldArray.slice(targetIndex + 1)]);
     });
@@ -83,6 +82,3 @@ const TodoRender = ({ text, id, category }: IToDo) => {
 
 export default TodoRender;
 
-//1) id로 카테고리를 바꿀 todo를 찾기, 카테고리 변경 버튼
-//2) setRecoilState를 이용하면 안의 값을 바로 바꿀 수 있음
-//3)선택한 option의 value

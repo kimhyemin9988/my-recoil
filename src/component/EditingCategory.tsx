@@ -22,8 +22,6 @@ const EditingCategory = () => {
   const todosArray = useRecoilValue(Todos);
 
   /* output : form의 모든 객체 */
-  /*   console.log(register("Todos"))   output : {name: 'Todos', onChange: ƒ, onBlur: ƒ, ref: ƒ};
-    console.log(watch("Todos"));    output : 사과*/
   const onSubmitCate = ({ Category }: any) => {
     setoldCategory((oldCategory) => {
       return (
@@ -52,7 +50,6 @@ const EditingCategory = () => {
   /* 삭제할 카테고리 제출 */
   const onSubmit = (event: any) => {
     event.preventDefault();
-    //*error, 필터하면 빈 배열이 남아있어 !==null로 하면 전부 true가 됨
     if (todosArray.filter((item) => item.category === handleValue).length !== 0) {
       alert("해당하는 카테고리 안에 목록이 있습니다! 삭제할 수 없습니다");
       navigate("/");
@@ -74,6 +71,7 @@ const EditingCategory = () => {
           <AsBtn as="button">
             <Link to="/">홈으로</Link>
           </AsBtn>
+          {/* 목록안에 element가 있는 경우 카테고리를 삭제 할 수 없음 */}
           {addBoolean ?
             <form onSubmit={handleSubmit(onSubmitCate)}>
               <input placeholder=
@@ -106,5 +104,3 @@ const EditingCategory = () => {
   );
 }
 export default EditingCategory;
-//목록안에 list가 있는 경우 카테고리를 삭제 할 수 없음
-//카테고리 삭제나 추가 시 다른 페이지로 이동 후 제출하면 홈페이지로 돌아오도록

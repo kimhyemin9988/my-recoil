@@ -66,8 +66,6 @@ const CategoryAndList = () => {
                 </Ul>
             </MainContainer>
         </>
-    );//handleChange={handleChange} 오류
+    );
 }
 export default CategoryAndList;
-//이 제네릭은 prop을 입력하려고 할 때 유용합니다.formatGroupLabel
-// <TodoRender></TodoRender>
