@@ -9,7 +9,21 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 
 # [ PC Layout]
 
+
+<img width="960" alt="recoil" src="https://user-images.githubusercontent.com/110611596/228089703-983047a6-bf2b-4fe6-b2ae-0e2c71dbf88e.png">
+
+<입력 삭제>
+
+![입력1-_online-video-cutter com_](https://user-images.githubusercontent.com/110611596/228092009-d91d167d-f74e-4b05-a97c-c5b9767eea75.gif)
+
+<카테고리 추가 삭제>
+
+![카테고리추가삭제1-_online-video-cutter com_](https://user-images.githubusercontent.com/110611596/228092052-646fb62f-6886-4247-95f9-145e3570df9d.gif)
+
+
 # [ Mobile Layout]
+
+<img width="376" alt="recoilMobile" src="https://user-images.githubusercontent.com/110611596/228089715-87d214ca-866b-440d-beaf-570f15ba8397.png">
 
 # Pages
 
