@@ -4,6 +4,7 @@ import {
 } from "recoil";
 import { useForm } from "react-hook-form";
 import styled from 'styled-components';
+import { watch } from 'fs';
 
 export interface formDate {
     Todos: string;
@@ -72,7 +73,12 @@ const CreateToDo = () => {
                             value: true,
                             message: "필수로 입력해야 하는 값입니다",
                         },
-                    }
+                        onChange(event) {
+                            if (event.target.value.length > 15) {
+                                event.target.value = event.target.value.slice(0, 15);
+                            }
+                        },
+                    },
                     )}></TodoInput>
                 <SubmitInput type="submit" />
             </CreateToForm>
