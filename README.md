@@ -22,8 +22,7 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 
 
 # [ Mobile Layout]
-
-<img width="376" alt="recoilMobile" src="https://user-images.githubusercontent.com/110611596/228089715-87d214ca-866b-440d-beaf-570f15ba8397.png">
+<img width="238" alt="mobile" src="https://user-images.githubusercontent.com/110611596/230742443-76e65469-8a20-4d6c-9fcf-3bd327b33396.png">
 
 # Pages
 
