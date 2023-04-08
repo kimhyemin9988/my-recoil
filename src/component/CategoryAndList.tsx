@@ -29,7 +29,7 @@ const Ul = styled.ul`
     min-height: 100px;
     text-align: center;
     @media screen and (max-width: 550px){
-        min-height: 180px;
+        min-height: 60vh;
     }
 `
 const Li = styled.li`
@@ -51,7 +51,7 @@ export const customStyles = {
         height: 25,
         minHeight: 25,
         alignContent: "center",
-        width: 110,
+        width: 160,
     }),
     valueContainer: (base: any) => (
         {

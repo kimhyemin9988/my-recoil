@@ -12,12 +12,9 @@ const MiniForm = styled.form`
   margin: 5px;
 `
 const AsBtnMargin = styled(SubmitInput)`
-    width: 100px;
+    width: fit-content;
     margin: 0px;
     margin-left:5px;
-    @media screen and (max-width: 550px){
-      width: 40px;
-    }
 `
 
 const TodoRender = ({ text, id, category }: IToDo) => {
