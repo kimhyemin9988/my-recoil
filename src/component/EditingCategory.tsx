@@ -4,8 +4,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { Category, Todos } from '../Atoms';
 import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
-import { AsBtn } from './CategoryAndList';
-import { Container } from './CreateToDo';
+import { AsBtn, customStyles } from './CategoryAndList';
+import { Container, CreateToForm, TodoInput } from './CreateToDo';
 import { Main } from "../Todo";
 export interface categories {
   Category: string;
@@ -67,37 +67,38 @@ const EditingCategory = () => {
   return (
     <>
       <Main>
-        <Container>
+        <Container style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <AsBtn as="button">
             <Link to="/">홈으로</Link>
           </AsBtn>
           {/* 목록안에 element가 있는 경우 카테고리를 삭제 할 수 없음 */}
-          {addBoolean ?
-            <form onSubmit={handleSubmit(onSubmitCate)}>
-              <input placeholder=
-                "추가할 카테고리를 입력하세요" {...register("Category", {
+          <div>
+            {addBoolean ?
+              <CreateToForm style={{ flexWrap: "wrap" }} onSubmit={handleSubmit(onSubmitCate)}>
+                <TodoInput placeholder="추가할 카테고리를 입력하세요" {...register("Category", {
                   required: {
                     value: true,
                     message: "공백을 입력할 수 없습니다",
                   },
-                })}></input>
-              <AsBtn as="button" type="submit">추가</AsBtn>
-              <AsBtn as="button" onClick={addCategory}>추가 취소</AsBtn>
-              <span>{errors.Category?.message}</span>
-            </form>
-            : <AsBtn as="button" onClick={addCategory}>카테고리 추가</AsBtn>}
-          {deleteBoolean ?
-            <>
-              <h4>삭제할 카테고리를 선택하세요</h4>
-              <form onSubmit={onSubmit}>
-                <Select options={oldCategory}
-                  onChange={handleChange} // 선택한 obj return
-                />
-                <AsBtn as="button" type="submit">삭제</AsBtn>
-                <AsBtn as="button" onClick={deleteCategory}>삭제취소</AsBtn>
-              </form>
-            </>
-            : <AsBtn as="button" onClick={deleteCategory}>카테고리 삭제</AsBtn>}
+                })}></TodoInput>
+                <AsBtn as="button" type="submit">추가</AsBtn>
+                <AsBtn as="button" onClick={addCategory}>추가 취소</AsBtn>
+                <span>{errors.Category?.message}</span>
+              </CreateToForm>
+              : <AsBtn as="button" onClick={addCategory}>카테고리 추가</AsBtn>}
+            {deleteBoolean ?
+              <>
+                <h4 style={{ marginLeft: "10px" }}>삭제할 카테고리를 선택하세요</h4>
+                <form onSubmit={onSubmit}>
+                  <Select options={oldCategory}
+                    onChange={handleChange} // 선택한 obj return
+                  />
+                  <AsBtn as="button" type="submit">삭제</AsBtn>
+                  <AsBtn as="button" onClick={deleteCategory}>삭제취소</AsBtn>
+                </form>
+              </>
+              : <AsBtn as="button" onClick={deleteCategory}>카테고리 삭제</AsBtn>}
+          </div>
         </Container>
       </Main>
     </>

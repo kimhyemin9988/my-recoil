@@ -9,6 +9,12 @@ import styled from 'styled-components';
 
 const MainContainer = styled(Container)`
     width: 80%;
+    @media screen and (max-width: 550px){
+        margin-top: 0.1rem;
+        width: 90%;
+        padding: 0.4rem;
+        min-height: 60vh;
+    }
 `
 
 export const AsBtn = styled(SubmitInput)`
@@ -22,6 +28,9 @@ const Ul = styled.ul`
     padding: 5px;
     min-height: 100px;
     text-align: center;
+    @media screen and (max-width: 550px){
+        min-height: 180px;
+    }
 `
 const Li = styled.li`
     display: flex;
@@ -32,7 +41,38 @@ const Li = styled.li`
 const TodoP = styled.p`
     font-size: 15px;
     font-weight: 700;
+    @media screen and (max-width: 550px){
+        width: 100%;
+    }
 `
+export const customStyles = {
+    control: (base: any) => ({
+        ...base,
+        height: 25,
+        minHeight: 25,
+        alignContent: "center",
+        width: 110,
+    }),
+    valueContainer: (base: any) => (
+        {
+            ...base,
+            alignItems: "center",
+        }
+    ),
+    menuList: (base: any) => (
+        {
+            ...base,
+            color: "black",
+        }
+    ),
+    container: (base: any) => (
+        {
+            ...base,
+            touchAction: "none",
+        }
+    ),
+};
+
 const CategoryAndList = () => {
     const oldCategory =  useRecoilValue(Category);
     const [handleValue, setHandleValue] = useState();

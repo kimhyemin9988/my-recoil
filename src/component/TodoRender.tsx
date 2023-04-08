@@ -4,6 +4,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { Category, Todos, IToDo } from "../Atoms";
 import { SubmitInput } from "./CreateToDo";
+import { customStyles } from "./CategoryAndList";
 
 const MiniForm = styled.form`
   width:350px;
@@ -14,6 +15,9 @@ const AsBtnMargin = styled(SubmitInput)`
     width: 100px;
     margin: 0px;
     margin-left:5px;
+    @media screen and (max-width: 550px){
+      width: 40px;
+    }
 `
 
 const TodoRender = ({ text, id, category }: IToDo) => {
@@ -63,19 +67,21 @@ const TodoRender = ({ text, id, category }: IToDo) => {
           <MiniForm onSubmit={onSubmit}>
             <Select options={oldCategory}
               onChange={handleChange} // 선택한 obj return
+              styles={customStyles}
             />
             <AsBtnMargin type="submit" />
             <AsBtnMargin as="button" type="button" onClick={togglecategories}>취소</AsBtnMargin>
           </MiniForm>
         </>)
         : (
-          <>
+          <div>
             <SubmitInput as="button"
               onClick={deleteList}>삭제</SubmitInput>
             <SubmitInput as="button"
               onClick={togglecategories}>카테고리 변경
             </SubmitInput>
-          </>)}
+          </div>
+          )}
     </>
   );
 };

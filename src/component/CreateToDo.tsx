@@ -16,20 +16,25 @@ export const Container = styled.div`
     box-shadow: 5px 5px 5px rgb(0 0 0 / 40%);
     margin-top: 1rem;
     padding: 1rem;
+    @media screen and (max-width: 550px){
+        width: 90%;
+        padding: 0.4rem;
+    }
 `
 
-const CreateToForm = styled.form`
+export const CreateToForm = styled.form`
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     height: 50%;
 `
-const TodoInput = styled.input`
+export const TodoInput = styled.input`
     width: 100%;
     height: 30px;
     border-radius: 5px;
     border: 3px solid #ced6e0;
     outline: none;
+    margin: 0.3rem;
     &:hover,&:focus {
       border-color: #3d9cff;
       box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
