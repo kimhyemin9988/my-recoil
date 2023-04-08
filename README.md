@@ -23,6 +23,14 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 
 # [ Mobile Layout]
 <img width="238" alt="mobile" src="https://user-images.githubusercontent.com/110611596/230742443-76e65469-8a20-4d6c-9fcf-3bd327b33396.png">
+<입력>
+![입력](https://user-images.githubusercontent.com/110611596/230742951-4953fa82-7b2c-443b-a484-add9f66055e8.gif)
+
+<카테고리변경>
+
+
+https://user-images.githubusercontent.com/110611596/230742961-1212c814-e0d8-4ac4-b0a0-7ae4e8756da2.mp4
+
 
 # Pages
 
