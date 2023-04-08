@@ -66,7 +66,7 @@ const TodoRender = ({ text, id, category }: IToDo) => {
               onChange={handleChange} // 선택한 obj return
               styles={customStyles}
             />
-            <AsBtnMargin type="submit" />
+            <AsBtnMargin as="button" type="submit">제출</AsBtnMargin>
             <AsBtnMargin as="button" type="button" onClick={togglecategories}>취소</AsBtnMargin>
           </MiniForm>
         </>)
