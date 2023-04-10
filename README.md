@@ -32,12 +32,12 @@ https://user-images.githubusercontent.com/110611596/230742961-1212c814-e0d8-4ac4
 https://kimhyemin9988.github.io/my-recoil/
 
 # 적용기술
--React
--react-router-dom
--react-select
--react-hook-form
--typescript
--styled-components
+-React<br>
+-react-router-dom<br>
+-react-select<br>
+-react-hook-form<br>
+-typescript<br>
+-styled-components<br>
 -recoil(react 상태관리)
 
 # Details
