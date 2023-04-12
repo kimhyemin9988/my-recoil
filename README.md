@@ -7,7 +7,7 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 분류된 할 일을 다른 카테고리로 변경할 수 있습니다.
 모든 data는 local storage에 저장됩니다.
 
-# [ PC Layout]
+# [ PC Layout ]
 
 
 <img width="960" alt="recoil" src="https://user-images.githubusercontent.com/110611596/228089703-983047a6-bf2b-4fe6-b2ae-0e2c71dbf88e.png">
@@ -21,21 +21,23 @@ React,typescript로 작성한 반응형 일정관리 web 입니다.
 ![카테고리추가삭제1-_online-video-cutter com_](https://user-images.githubusercontent.com/110611596/228092052-646fb62f-6886-4247-95f9-145e3570df9d.gif)
 
 
-# [ Mobile Layout]
+# [ Mobile Layout ]
+<img width="238" alt="mobile" src="https://user-images.githubusercontent.com/110611596/230742443-76e65469-8a20-4d6c-9fcf-3bd327b33396.png">
 
-<img width="376" alt="recoilMobile" src="https://user-images.githubusercontent.com/110611596/228089715-87d214ca-866b-440d-beaf-570f15ba8397.png">
+https://user-images.githubusercontent.com/110611596/230742961-1212c814-e0d8-4ac4-b0a0-7ae4e8756da2.mp4
+
 
 # Pages
 
 https://kimhyemin9988.github.io/my-recoil/
 
 # 적용기술
--React
--react-router-dom
--react-select
--react-hook-form
--typescript
--styled-components
+-React<br>
+-react-router-dom<br>
+-react-select<br>
+-react-hook-form<br>
+-typescript<br>
+-styled-components<br>
 -recoil(react 상태관리)
 
 # Details
