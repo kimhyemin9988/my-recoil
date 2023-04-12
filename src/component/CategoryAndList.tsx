@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useRecoilValue } from "recoil";
-import Select from 'react-select';
-import { Category, Todos } from '../Atoms';
+import Select, { SingleValue } from 'react-select';
+import { Category, ICategory, Todos } from '../Atoms';
 import TodoRender from './TodoRender';
 import { Link } from 'react-router-dom';
 import { SubmitInput, Container } from "./CreateToDo";
@@ -65,24 +65,18 @@ export const customStyles = {
             color: "black",
         }
     ),
-    container: (base: any) => (
-        {
-            ...base,
-            touchAction: "none",
-        }
-    ),
 };
 
 const CategoryAndList = () => {
     const oldCategory =  useRecoilValue(Category);
-    const [handleValue, setHandleValue] = useState();
+    const [handleValue, setHandleValue] = useState<string>();
     const todosArray = useRecoilValue(Todos);
     // set value for default selection
     // handle onChange event of the dropdown and get value
     // React-select get value on change
-    const handleChange = (e: any) => {
-        const { value } = e; // value ==  "Todo"
-        setHandleValue(() => value);
+    const handleChange = (e: SingleValue<ICategory>) => {
+        const value = e?.value; // value ==  "Todo"
+        setHandleValue((prev) => prev =  value);
     }
     return (
         <>
