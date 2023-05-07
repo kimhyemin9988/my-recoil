@@ -2,6 +2,7 @@ import CreateToDo from './component/CreateToDo';
 import CategoryAndList from './component/CategoryAndList';
 import styled from 'styled-components';
 import { Helmet } from "react-helmet";
+import { Outlet } from 'react-router-dom';
 
 const Header = styled.header`
     width: 100%;
@@ -13,7 +14,7 @@ const Header = styled.header`
       height: 50px;
     }
 `
-const Title = styled.span`
+export const Title = styled.span`
     font-size: 3rem;
     margin: 7%;
     font-weight: 800;

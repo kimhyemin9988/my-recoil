@@ -3,6 +3,8 @@ import App from './App';
 import Todo from './Todo';
 import EditingCategory from "./component/EditingCategory";
 import NotFound from './component/Notfound';
+import AuthJoin from './AuthJoin';
+import AuthLogin from './AuthLogin';
 
 const RouterApp = createBrowserRouter([
     {
@@ -10,12 +12,20 @@ const RouterApp = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "",
+                path: "category",
+                element: <EditingCategory />,
+            },
+            {
+                path: "login",
+                element: <AuthLogin />, // 로그인
+            },
+            {
+                path: "todo",
                 element: <Todo />,
             },
             {
-                path: "category",
-                element: <EditingCategory />,
+                path: "join",
+                element: <AuthJoin />, // 회원가입
             },
         ],
         errorElement: <NotFound></NotFound>,

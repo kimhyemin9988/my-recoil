@@ -1,5 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
+import Todo from './Todo';
+import AuthLogin from './AuthLogin';
+import { useState } from "react";
+import { authService } from './todoFirebase';
+
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "LINESeedKR-Bd", "Open Sans", "Helvetica Neue", sans-serif;
@@ -59,10 +64,26 @@ a{
     text-decoration: none;
 }
 `
+
 const App = () => {
+	const [inital, setinital] = useState(false); // 초기화
+	const [userLogin, setuserLogin] = useState(false); // 로그인 여부
+	authService.onAuthStateChanged((user) => {
+		if (user) {
+			// User is signed in
+			setuserLogin((prev) => prev = true);
+		}
+		else {
+			setuserLogin((prev) => prev = false);
+		}
+		setinital((prev) => prev = true);
+	})
 	return (
 		<>
 			<GlobalStyle />
+			{inital ?
+				(true ? <Todo></Todo> : <AuthLogin></AuthLogin>) : null
+			}
 			<Outlet></Outlet>
 		</>
 	);

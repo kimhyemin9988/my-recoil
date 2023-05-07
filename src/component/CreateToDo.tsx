@@ -29,7 +29,7 @@ export const CreateToForm = styled.form`
     height: 50%;
 `
 export const TodoInput = styled.input`
-    width: 100%;
+    min-width: 90%;
     height: 30px;
     border-radius: 5px;
     border: 3px solid #ced6e0;

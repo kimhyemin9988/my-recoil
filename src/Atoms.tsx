@@ -26,3 +26,4 @@ export const Category = atom<ICategory[]>({
     default: [{ value: "Todo", label: "Todo" }, { value: "Done", label: "Done" }, { value: "Doing", label: "Doing" }],
     effects_UNSTABLE: [persistAtom],
 })
+

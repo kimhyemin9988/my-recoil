@@ -23,7 +23,6 @@ export const AsBtn = styled(SubmitInput)`
 const Ul = styled.ul`
     background-color: #fbedff;
     border-radius: 0.3rem;
-    cursor: pointer;
     margin-top: 10px;
     padding: 5px;
     min-height: 100px;
