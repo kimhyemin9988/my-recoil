@@ -39,10 +39,10 @@ const Todo = () => {
         <Title>To Do List</Title>
       </Header>
       <Main>
-        <CreateToDo></CreateToDo>
-        <hr />
-        <CategoryAndList></CategoryAndList>
-      </Main>
+            <CreateToDo></CreateToDo>
+            <hr />
+            <CategoryAndList></CategoryAndList>
+        </Main>
     </>
   );
 }

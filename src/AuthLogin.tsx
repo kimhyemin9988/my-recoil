@@ -76,10 +76,10 @@ const AuthLogin = () => {
                 </LoginDiv>
                 <LoginDiv>
                     <LoginForm onSubmit={handleSubmit(onSubmit)}>
-                        <LoginInput {...register("userEmail", { required: true })} placeholder="이메일을 입력하세요" type="email"></LoginInput>
-                        {errors.userEmail && <span>이메일을 입력해 주세요.</span>}
-                        <LoginInput {...register("userPassword", { required: true })} placeholder="비밀번호를 입력하세요" type="password"></LoginInput>
-                        {errors.userPassword && <span>비밀번호를 입력해 주세요.</span>}
+                        <LoginInput {...register("userEmail", { required: "이메일을 입력해 주세요." })} placeholder="이메일을 입력하세요" type="email"></LoginInput>
+                        <AuthErrorM>{errors.userEmail?.message}</AuthErrorM>
+                        <LoginInput {...register("userPassword", { required: "비밀번호를 입력해 주세요." })} placeholder="비밀번호를 입력하세요" type="password"></LoginInput>
+                        <AuthErrorM>{errors.userPassword?.message}</AuthErrorM>
                         <LoginSubmit as="button" type="submit">
                             <h1>이메일 로그인</h1>
                         </LoginSubmit>
@@ -97,7 +97,7 @@ const AuthLogin = () => {
                 <hr></hr>
                 <LoginDiv>
                     <LoginSubmit2 as="button" type="button">
-                        <Link to="join">회원 가입</Link>
+                        <Link to="../join">회원 가입</Link>
                     </LoginSubmit2>
                     <LoginSubmit2 as="button" type="button">
                         <h1>비밀번호 찾기</h1>

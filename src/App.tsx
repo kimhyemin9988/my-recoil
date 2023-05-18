@@ -1,9 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Todo from './Todo';
 import AuthLogin from './AuthLogin';
 import { useState } from "react";
 import { authService } from './todoFirebase';
+import { Navigate } from "react-router-dom";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -72,6 +73,7 @@ const App = () => {
 		if (user) {
 			// User is signed in
 			setuserLogin((prev) => prev = true);
+			//const uid = user.uid;
 		}
 		else {
 			setuserLogin((prev) => prev = false);
@@ -81,10 +83,22 @@ const App = () => {
 	return (
 		<>
 			<GlobalStyle />
-			{inital ?
-				(true ? <Todo></Todo> : <AuthLogin></AuthLogin>) : null
+			{inital &&
+				<Outlet />//로그인, 회원가입, 보호경로
+				//세가지
+				
+				//state={{ from: location }} replace ={true}
+				//URL을 "끝까지" 일치
+				//login/33 => 오류가 발생했습니다, 홈으로 돌아가기 버튼
+
+				// outlet -> todo나 카테고리 보호 x
+				//outlet에서 path에 따라 랜더링 됨.
+				//userLogin에 따라서 랜더링되는게 달라짐
+				//트위터 home으로 가려해도 -> 로그인 화면으로 됨. (리디렉션 사용)
+				//보호기능
+				//프로필 수정 -> 로그인 화면으로
+
 			}
-			<Outlet></Outlet>
 		</>
 	);
 }
