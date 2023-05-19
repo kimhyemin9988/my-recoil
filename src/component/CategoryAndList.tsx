@@ -81,7 +81,7 @@ const CategoryAndList = () => {
         <>
             <MainContainer>
                 <AsBtn as="button" type="button">
-                    <Link to="category">카테고리 목록 <br></br>수정</Link>
+                    <Link to="../category">카테고리 목록 <br></br>수정</Link>
                 </AsBtn>
                 <Select options={oldCategory}
                     onChange={handleChange} // 선택한 obj return

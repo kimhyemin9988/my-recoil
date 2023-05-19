@@ -3,6 +3,7 @@ import CategoryAndList from './component/CategoryAndList';
 import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 import { Outlet } from 'react-router-dom';
+import ProfileMiniCircle from './component/ProfileMini';
 
 const Header = styled.header`
     width: 100%;
@@ -37,6 +38,7 @@ const Todo = () => {
       </Helmet>
       <Header>
         <Title>To Do List</Title>
+        <ProfileMiniCircle></ProfileMiniCircle>
       </Header>
       <Main>
             <CreateToDo></CreateToDo>
