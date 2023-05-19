@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Main } from "./Todo";
 import { Container, SubmitInput, TodoInput } from "./component/CreateToDo";
@@ -5,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { authService } from "./todoFirebase";
+
 
 export const LoginTitle = styled.span`
     font-size: 2rem;
@@ -75,25 +77,28 @@ export const AuthContainer = styled(Container)`
 const AuthLogin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginI>();
     const navigate = useNavigate();
-
+    const [loginError, setLoginError] = useState<string>();
     const onSubmit = async (data: LoginI) => {
-        let loginData;
-        try {
-            // User is signed in
-            loginData = await signInWithEmailAndPassword(authService, data.userEmail, data.userPassword);
-            navigate("/home");
-        } catch (error: any) {
-            switch (error.code) {
-                case "auth/wrong-password":
-                    return "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.";
-                case "auth/network-request-failed":
-                    return "네트워크 연결에 실패 하였습니다.";
-                default:
-                    return "알 수 없는 이유로 로그인에 실패 하였습니다.";
-            }
+        {
+            try {
+                // User is signed in
+                await signInWithEmailAndPassword(authService, data.userEmail, data.userPassword);
+                navigate("/home");
+            } catch (error: any) {
+                let loginError = (() => {
+                    switch (error.code) {
+                        case "auth/wrong-password":
+                            return "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.";
+                        case "auth/timeout":
+                            return "네트워크 연결에 실패 하였습니다.";
+                        default:
+                            return "알 수 없는 이유로 로그인에 실패 하였습니다.";
+                    }
+                })();
+                setLoginError((prev) => prev = loginError);
+            };
         }
     };
-
     return (
 
         <Main>
@@ -104,9 +109,10 @@ const AuthLogin = () => {
                 <LoginDiv>
                     <LoginForm onSubmit={handleSubmit(onSubmit)}>
                         <LoginInput {...register("userEmail", { required: "이메일을 입력해 주세요." })} placeholder="이메일을 입력하세요" type="email"></LoginInput>
-                        <AuthErrorM>{errors.userEmail?.message}</AuthErrorM>
+                        {loginError === undefined && <AuthErrorM>{errors.userEmail?.message}</AuthErrorM>}
                         <LoginInput {...register("userPassword", { required: "비밀번호를 입력해 주세요." })} placeholder="비밀번호를 입력하세요" type="password"></LoginInput>
-                        <AuthErrorM>{errors.userPassword?.message}</AuthErrorM>
+                        {loginError === undefined && <AuthErrorM>{errors.userPassword?.message}</AuthErrorM>}
+                        <AuthErrorM>{loginError}</AuthErrorM>
                         <LoginSubmit as="button" type="submit">
                             <h1>이메일 로그인</h1>
                         </LoginSubmit>

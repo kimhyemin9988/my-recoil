@@ -4,6 +4,9 @@ import { useForm } from "react-hook-form";
 import { AuthContainer, AuthErrorM, AuthInputDiv, FormLabel, LoginDiv, LoginForm, LoginI, LoginInput, LoginSubmit, LoginTitle } from "./AuthLogin";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { authService } from "./todoFirebase";
+import { useState } from "react";
+import MiniCheck from "./component/MiniCheck";
+
 interface JoinI extends LoginI {
     passwordConfirm: string,
     userName: string,
@@ -20,6 +23,8 @@ const AuthJoin = () => {
         try {
             let createData;
             createData = await createUserWithEmailAndPassword(authService, data.userEmail, data.userPassword);
+            //회원가입 즉시 로그인됨.
+            alert("회원가입에 성공했습니다");
         } catch (error: any) {
             switch (error.code) {
                 case "auth/email-already-in-use":
@@ -85,7 +90,7 @@ const AuthJoin = () => {
                     </LoginForm>
                 </LoginDiv>
             </AuthContainer>
-        </Main >
+        </Main>
     );
 };
 

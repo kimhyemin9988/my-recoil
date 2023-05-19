@@ -3,27 +3,22 @@ import { authService } from "./todoFirebase";
 import { useEffect, useState } from "react";
 
 const PrivateRoute = () => {
+    //todo, category등 로그인시 접근 가능 page 보호
     const [inital, setinital] = useState(false); // 초기화
-    const [userLogin, setuserLogin] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         authService.onAuthStateChanged((user) => {
-            if (user) {
-                // User is signed in
-                setuserLogin((prev) => prev = true);
-                //const uid = user.uid;
-            }
-            else {
-                setuserLogin((prev) => prev = false);
-                navigate("/login");
-            }
+            user ?? navigate("/login");
             setinital((prev) => prev = true);
         })
     }, [])
+
     return (
-        <Outlet></Outlet>
-        );
+        <>
+            {inital && <Outlet></Outlet>}
+        </>
+    );
 }
 
 export default PrivateRoute;

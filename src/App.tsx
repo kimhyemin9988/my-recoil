@@ -68,31 +68,25 @@ a{
 `
 
 const App = () => {
+	//path '/'일때만 적용, protect
+	const location = useLocation();
 	const navigate = useNavigate();
 	const [inital, setinital] = useState(false); // 초기화
-	const [userLogin, setuserLogin] = useState(false); // 로그인 여부
-
 	useEffect(() => {
-		authService.onAuthStateChanged((user) => {
-			if (user) {
-				// User is signed in
-				setuserLogin((prev) => prev = true);
-				//const uid = user.uid;
-			}
-			else {
-				setuserLogin((prev) => prev = false);
-				navigate("/login");
-			}
-			setinital((prev) => prev = true);
-		})
-	}, [])
+		if (location.pathname === "/") {
+			authService.onAuthStateChanged((user) => { 
+				user ? navigate("/home") : navigate("/login");
+			})
+		}
+		setinital((prev) => prev = true);
+	}, []);
 
 	return (
 		<>
 			<GlobalStyle />
 			{inital &&
-				<Outlet></Outlet>
-			}
+				<Outlet></Outlet>}
+
 		</>
 	);
 }
