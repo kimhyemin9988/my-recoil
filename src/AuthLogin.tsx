@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Main } from "./Todo";
 import { Container, SubmitInput, TodoInput } from "./component/CreateToDo";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { authService } from "./todoFirebase";
 
 export const LoginTitle = styled.span`
     font-size: 2rem;
@@ -28,11 +30,17 @@ export const LoginSubmit = styled(SubmitInput)`
     min-width: 50%;
     height: 30px;
 `
-export const LoginSubmit2 = styled(SubmitInput)`
+export const LoginSubmit2 = styled.button`
     width: 100px;
     height: 30px;
     background-color: #503F47;
     color: white;
+    border-radius: 0.3rem;
+    font-weight: 900;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid white;
+    margin: 10px;
 `
 export const LoginDiv = styled.div`
     display: flex;
@@ -66,7 +74,26 @@ export const AuthContainer = styled(Container)`
 `
 const AuthLogin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginI>();
-    const onSubmit = (data: LoginI) => console.log(data);
+    const navigate = useNavigate();
+
+    const onSubmit = async (data: LoginI) => {
+        let loginData;
+        try {
+            // User is signed in
+            loginData = await signInWithEmailAndPassword(authService, data.userEmail, data.userPassword);
+            navigate("/home");
+        } catch (error: any) {
+            switch (error.code) {
+                case "auth/wrong-password":
+                    return "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.";
+                case "auth/network-request-failed":
+                    return "네트워크 연결에 실패 하였습니다.";
+                default:
+                    return "알 수 없는 이유로 로그인에 실패 하였습니다.";
+            }
+        }
+    };
+
     return (
 
         <Main>
@@ -87,19 +114,19 @@ const AuthLogin = () => {
                 </LoginDiv>
                 <hr></hr>
                 <LoginDiv>
-                    <LoginSubmit2 as="button" type="button">
+                    <LoginSubmit2 type="button">
                         <h1>구글 로그인</h1>
                     </LoginSubmit2>
-                    <LoginSubmit2 as="button" type="button">
+                    <LoginSubmit2 type="button">
                         <h1>깃허브 로그인</h1>
                     </LoginSubmit2>
                 </LoginDiv>
                 <hr></hr>
                 <LoginDiv>
-                    <LoginSubmit2 as="button" type="button">
+                    <LoginSubmit2 type="button">
                         <Link to="../join">회원 가입</Link>
                     </LoginSubmit2>
-                    <LoginSubmit2 as="button" type="button">
+                    <LoginSubmit2 type="button">
                         <h1>비밀번호 찾기</h1>
                     </LoginSubmit2>
                 </LoginDiv>

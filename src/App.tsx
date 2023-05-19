@@ -1,12 +1,13 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Todo from './Todo';
 import AuthLogin from './AuthLogin';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { authService } from './todoFirebase';
-import { Navigate } from "react-router-dom";
+import { Navigate, redirect } from "react-router-dom";
+import PrivateRoute from './PrivateRoute';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: "LINESeedKR-Bd", "Open Sans", "Helvetica Neue", sans-serif;
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
@@ -67,37 +68,30 @@ a{
 `
 
 const App = () => {
+	const navigate = useNavigate();
 	const [inital, setinital] = useState(false); // 초기화
 	const [userLogin, setuserLogin] = useState(false); // 로그인 여부
-	authService.onAuthStateChanged((user) => {
-		if (user) {
-			// User is signed in
-			setuserLogin((prev) => prev = true);
-			//const uid = user.uid;
-		}
-		else {
-			setuserLogin((prev) => prev = false);
-		}
-		setinital((prev) => prev = true);
-	})
+
+	useEffect(() => {
+		authService.onAuthStateChanged((user) => {
+			if (user) {
+				// User is signed in
+				setuserLogin((prev) => prev = true);
+				//const uid = user.uid;
+			}
+			else {
+				setuserLogin((prev) => prev = false);
+				navigate("/login");
+			}
+			setinital((prev) => prev = true);
+		})
+	}, [])
+
 	return (
 		<>
 			<GlobalStyle />
 			{inital &&
-				<Outlet />//로그인, 회원가입, 보호경로
-				//세가지
-				
-				//state={{ from: location }} replace ={true}
-				//URL을 "끝까지" 일치
-				//login/33 => 오류가 발생했습니다, 홈으로 돌아가기 버튼
-
-				// outlet -> todo나 카테고리 보호 x
-				//outlet에서 path에 따라 랜더링 됨.
-				//userLogin에 따라서 랜더링되는게 달라짐
-				//트위터 home으로 가려해도 -> 로그인 화면으로 됨. (리디렉션 사용)
-				//보호기능
-				//프로필 수정 -> 로그인 화면으로
-
+				<Outlet></Outlet>
 			}
 		</>
 	);

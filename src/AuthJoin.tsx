@@ -13,7 +13,6 @@ interface JoinI extends LoginI {
 const AuthJoin = () => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm<JoinI>();
 
-    console.log("회원가입 이동");
     const onSubmit = async (data: JoinI) => {
         if (data.userPassword !== data.passwordConfirm) {
             setError("passwordConfirm", { message: "동일한 비밀번호를 입력하세요." });
