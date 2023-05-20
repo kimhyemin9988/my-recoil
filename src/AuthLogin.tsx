@@ -8,7 +8,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { authService } from "./todoFirebase";
 
 
-export const LoginTitle = styled.span`
+export const TitleSpan = styled.span`
     font-size: 2rem;
     font-weight: 700;
     color:#503F47;
@@ -44,7 +44,7 @@ export const LoginSubmit2 = styled.button`
     border: 1px solid white;
     margin: 10px;
 `
-export const LoginDiv = styled.div`
+export const TitleDiv = styled.div`
     display: flex;
     justify-content: center;
     margin: 1rem;
@@ -103,10 +103,10 @@ const AuthLogin = () => {
 
         <Main>
             <AuthContainer>
-                <LoginDiv>
-                    <LoginTitle>로그인 하기</LoginTitle>
-                </LoginDiv>
-                <LoginDiv>
+                <TitleDiv>
+                    <TitleSpan>로그인 하기</TitleSpan>
+                </TitleDiv>
+                <TitleDiv>
                     <LoginForm onSubmit={handleSubmit(onSubmit)}>
                         <LoginInput {...register("userEmail", { required: "이메일을 입력해 주세요." })} placeholder="이메일을 입력하세요" type="email"></LoginInput>
                         {loginError === undefined && <AuthErrorM>{errors.userEmail?.message}</AuthErrorM>}
@@ -117,25 +117,27 @@ const AuthLogin = () => {
                             <h1>이메일 로그인</h1>
                         </LoginSubmit>
                     </LoginForm>
-                </LoginDiv>
+                </TitleDiv>
                 <hr></hr>
-                <LoginDiv>
+                <TitleDiv>
                     <LoginSubmit2 type="button">
                         <h1>구글 로그인</h1>
                     </LoginSubmit2>
                     <LoginSubmit2 type="button">
                         <h1>깃허브 로그인</h1>
                     </LoginSubmit2>
-                </LoginDiv>
+                </TitleDiv>
                 <hr></hr>
-                <LoginDiv>
-                    <LoginSubmit2 type="button">
-                        <Link to="../join">회원 가입</Link>
-                    </LoginSubmit2>
+                <TitleDiv>
+                    <Link to="../join">
+                        <LoginSubmit2 type="button">
+                            회원 가입
+                        </LoginSubmit2>
+                    </Link>
                     <LoginSubmit2 type="button">
                         <h1>비밀번호 찾기</h1>
                     </LoginSubmit2>
-                </LoginDiv>
+                </TitleDiv>
             </AuthContainer>
         </Main>
     );

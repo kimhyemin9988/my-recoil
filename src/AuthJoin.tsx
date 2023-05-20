@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Main } from "./Todo";
 import { useForm } from "react-hook-form";
-import { AuthContainer, AuthErrorM, AuthInputDiv, FormLabel, LoginDiv, LoginForm, LoginI, LoginInput, LoginSubmit, LoginTitle } from "./AuthLogin";
+import { AuthContainer, AuthErrorM, AuthInputDiv, FormLabel, LoginForm, LoginI, LoginInput, LoginSubmit, TitleDiv, TitleSpan } from "./AuthLogin";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { authService } from "./todoFirebase";
 import { useState } from "react";
@@ -40,10 +40,10 @@ const AuthJoin = () => {
     return (
         <Main>
             <AuthContainer>
-                <LoginDiv>
-                    <LoginTitle>회원가입 하기</LoginTitle>
-                </LoginDiv>
-                <LoginDiv>
+                <TitleDiv>
+                    <TitleSpan>회원가입 하기</TitleSpan>
+                </TitleDiv>
+                <TitleDiv>
                     <LoginForm onSubmit={handleSubmit(onSubmit)}>
                         <AuthInputDiv>
                             <FormLabel htmlFor="userName">이름</FormLabel>
@@ -88,7 +88,7 @@ const AuthJoin = () => {
                             <h1>회원 가입</h1>
                         </LoginSubmit>
                     </LoginForm>
-                </LoginDiv>
+                </TitleDiv>
             </AuthContainer>
         </Main>
     );
