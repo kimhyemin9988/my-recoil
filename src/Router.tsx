@@ -6,6 +6,7 @@ import NotFound from './component/Notfound';
 import AuthJoin from './AuthJoin';
 import AuthLogin from './AuthLogin';
 import PrivateRoute from './PrivateRoute';
+import Profile from './component/Profile';
 
 const RouterApp = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const RouterApp = createBrowserRouter([
                         path: "category",
                         element: <EditingCategory />,
                     },
+                    {
+                        path:"profile",
+                        element:<Profile></Profile>,
+                    }
                 ]
             },
         ],

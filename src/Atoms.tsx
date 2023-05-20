@@ -27,3 +27,16 @@ export const Category = atom<ICategory[]>({
     effects_UNSTABLE: [persistAtom],
 })
 
+export interface IuserData {
+    name: string;
+    email: string;
+    displayName: string;
+    phoneNumber: string;
+    photoURL: string;
+}
+
+export const UserData = atom<IuserData[]>({
+    key: "UserData",
+    default: [],
+    effects_UNSTABLE: [persistAtom],
+})
