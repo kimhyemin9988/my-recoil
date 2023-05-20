@@ -68,9 +68,11 @@ const EditingCategory = () => {
     <>
       <Main>
         <Container style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <AsBtn as="button">
-            <Link to="../home">홈으로</Link>
-          </AsBtn>
+          <Link to="../home">
+            <AsBtn as="button">
+              홈으로
+            </AsBtn>
+          </Link>
           {/* 목록안에 element가 있는 경우 카테고리를 삭제 할 수 없음 */}
           <div>
             {addBoolean ?
