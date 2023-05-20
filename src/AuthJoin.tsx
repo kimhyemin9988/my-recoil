@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { authService } from "./todoFirebase";
 import { useState } from "react";
 import MiniCheck from "./component/MiniCheck";
+import { Navigate, useNavigate } from "react-router-dom";
 
 interface JoinI extends LoginI {
     passwordConfirm: string,
@@ -15,16 +16,18 @@ interface JoinI extends LoginI {
 
 const AuthJoin = () => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm<JoinI>();
+    const navigate = useNavigate();
 
     const onSubmit = async (data: JoinI) => {
         if (data.userPassword !== data.passwordConfirm) {
             setError("passwordConfirm", { message: "동일한 비밀번호를 입력하세요." });
         }
         try {
-            let createData;
-            createData = await createUserWithEmailAndPassword(authService, data.userEmail, data.userPassword);
+            await createUserWithEmailAndPassword(authService, data.userEmail, data.userPassword);
             //회원가입 즉시 로그인됨.
+            authService.currentUser && await updateProfile(authService.currentUser, { displayName: data.userName})
             alert("회원가입에 성공했습니다");
+            navigate('/');
         } catch (error: any) {
             switch (error.code) {
                 case "auth/email-already-in-use":
