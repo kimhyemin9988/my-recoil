@@ -67,7 +67,7 @@ export const customStyles = {
 };
 
 const CategoryAndList = () => {
-    const oldCategory =  useRecoilValue(Category);
+    const oldCategory = useRecoilValue(Category);
     const [handleValue, setHandleValue] = useState<string>();
     const todosArray = useRecoilValue(Todos);
     // set value for default selection
@@ -75,14 +75,16 @@ const CategoryAndList = () => {
     // React-select get value on change
     const handleChange = (e: SingleValue<ICategory>) => {
         const value = e?.value; // value ==  "Todo"
-        setHandleValue((prev) => prev =  value);
+        setHandleValue((prev) => prev = value);
     }
     return (
         <>
             <MainContainer>
-                <AsBtn as="button" type="button">
-                    <Link to="../category">카테고리 목록 <br></br>수정</Link>
-                </AsBtn>
+                <Link to="../category">
+                    <AsBtn as="button" type="button">
+                        카테고리 목록 <br></br>수정
+                    </AsBtn>
+                </Link>
                 <Select options={oldCategory}
                     onChange={handleChange} // 선택한 obj return
                 />
