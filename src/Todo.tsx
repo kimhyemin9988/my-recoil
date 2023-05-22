@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 import { Outlet } from 'react-router-dom';
 import ProfileMiniCircle from './component/ProfileMini';
+import { IuserData } from './component/Profile';
+import { authService } from './todoFirebase';
 
 const Header = styled.header`
     width: 100%;
@@ -17,7 +19,6 @@ const Header = styled.header`
 `
 export const Title = styled.span`
     font-size: 3rem;
-    margin: 7%;
     font-weight: 800;
     color: white;
     @media screen and (max-width: 550px){
@@ -31,6 +32,8 @@ export const Main = styled.div`
     flex-direction: column;
 `
 const Todo = () => {
+  const user = authService.currentUser as IuserData;
+
   return (
     <>
       <Helmet>
@@ -38,7 +41,7 @@ const Todo = () => {
       </Helmet>
       <Header>
         <Title>To Do List</Title>
-        <ProfileMiniCircle></ProfileMiniCircle>
+        <ProfileMiniCircle userPhotoURL={user.photoURL}></ProfileMiniCircle>
       </Header>
       <Main>
             <CreateToDo></CreateToDo>

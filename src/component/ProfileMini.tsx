@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { authService } from "../todoFirebase";
 import { Link, useNavigate } from "react-router-dom";
@@ -58,7 +56,7 @@ export const ProfileNavDiv = styled.div`
     }
 `
 
-const ProfileMini = () => {
+const ProfileMini = ({ userPhotoURL } : { userPhotoURL: string }) => {
   const navigate = useNavigate();
   const [profileNav, setProfileNav] = useState(false);
   const cycleProfileNav = () => {
@@ -72,8 +70,7 @@ const ProfileMini = () => {
 
   return (
     <ProfileDiv>
-      <ImageCircle onClick={cycleProfileNav}>
-        <FontAwesomeIcon icon={faUser} />
+      <ImageCircle as="img" src={`${userPhotoURL}`} onClick={cycleProfileNav}>
       </ImageCircle>
       {profileNav &&
         <ProfileNavContainer>

@@ -68,7 +68,6 @@ a{
 `
 
 const App = () => {
-	//path '/'일때만 적용, protect
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [inital, setinital] = useState(false); // 초기화
