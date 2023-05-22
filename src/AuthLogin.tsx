@@ -27,12 +27,19 @@ export const LoginInput = styled(TodoInput)`
         width: 250px;
     }
 `
-export const LoginSubmit = styled(SubmitInput)`
+export const LargeBtnWhite = styled.button <{ changeImg?: boolean }>`
     border: 1px solid #503F47;
     min-width: 50%;
     height: 30px;
+    background-color: ${props => (props.changeImg ? `red` : `white`)};
+    color: ${props => (props.changeImg ? `white` : ` #503F47`)};
+    border-radius: 0.3rem;
+    font-weight: 900;
+    text-align: center;
+    cursor: pointer;
+    margin: 10px;
 `
-export const LoginSubmit2 = styled.button`
+export const LargeBtnDark = styled.button`
     width: 100px;
     height: 30px;
     background-color: #503F47;
@@ -113,30 +120,30 @@ const AuthLogin = () => {
                         <LoginInput {...register("userPassword", { required: "비밀번호를 입력해 주세요." })} placeholder="비밀번호를 입력하세요" type="password"></LoginInput>
                         {loginError === undefined && <AuthErrorM>{errors.userPassword?.message}</AuthErrorM>}
                         <AuthErrorM>{loginError}</AuthErrorM>
-                        <LoginSubmit as="button" type="submit">
+                        <LargeBtnWhite as="button" type="submit">
                             <h1>이메일 로그인</h1>
-                        </LoginSubmit>
+                        </LargeBtnWhite>
                     </LoginForm>
                 </TitleDiv>
                 <hr></hr>
                 <TitleDiv>
-                    <LoginSubmit2 type="button">
+                    <LargeBtnDark type="button">
                         <h1>구글 로그인</h1>
-                    </LoginSubmit2>
-                    <LoginSubmit2 type="button">
+                    </LargeBtnDark>
+                    <LargeBtnDark type="button">
                         <h1>깃허브 로그인</h1>
-                    </LoginSubmit2>
+                    </LargeBtnDark>
                 </TitleDiv>
                 <hr></hr>
                 <TitleDiv>
                     <Link to="../join">
-                        <LoginSubmit2 type="button">
+                        <LargeBtnDark type="button">
                             회원 가입
-                        </LoginSubmit2>
+                        </LargeBtnDark>
                     </Link>
-                    <LoginSubmit2 type="button">
+                    <LargeBtnDark type="button">
                         <h1>비밀번호 찾기</h1>
-                    </LoginSubmit2>
+                    </LargeBtnDark>
                 </TitleDiv>
             </AuthContainer>
         </Main>
