@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Main } from "./Todo";
 import { useForm } from "react-hook-form";
-import { AuthContainer, AuthErrorM, AuthInputDiv, FormLabel, LoginForm, LoginI, LoginInput, LoginSubmit, TitleDiv, TitleSpan } from "./AuthLogin";
+import { AuthContainer, AuthErrorM, AuthInputDiv, FormLabel, LoginForm, LoginI, LoginInput, LargeBtnWhite, TitleDiv, TitleSpan } from "./AuthLogin";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { authService } from "./todoFirebase";
 import { useState } from "react";
@@ -17,7 +17,7 @@ interface JoinI extends LoginI {
 const AuthJoin = () => {
     const { register, handleSubmit, formState: { errors }, setError } = useForm<JoinI>();
     const navigate = useNavigate();
-
+    const basicUrl = "https://static.nid.naver.com/images/web/user/default.png?type=f260_260";
     const onSubmit = async (data: JoinI) => {
         if (data.userPassword !== data.passwordConfirm) {
             setError("passwordConfirm", { message: "동일한 비밀번호를 입력하세요." });
@@ -25,7 +25,8 @@ const AuthJoin = () => {
         try {
             await createUserWithEmailAndPassword(authService, data.userEmail, data.userPassword);
             //회원가입 즉시 로그인됨.
-            authService.currentUser && await updateProfile(authService.currentUser, { displayName: data.userName})
+            authService.currentUser && await updateProfile(authService.currentUser, { displayName: data.userName, photoURL: basicUrl})
+
             alert("회원가입에 성공했습니다");
             navigate('/');
         } catch (error: any) {
@@ -87,9 +88,9 @@ const AuthJoin = () => {
                                 required: "비밀번호를 한번 더 입력하세요.",
                             })} placeholder="비밀번호를 한번 더 입력하세요." type="password"></LoginInput>
                             <AuthErrorM>{errors.passwordConfirm?.message}</AuthErrorM>
-                        </AuthInputDiv><LoginSubmit as="button" type="submit">
+                        </AuthInputDiv><LargeBtnWhite as="button" type="submit">
                             <h1>회원 가입</h1>
-                        </LoginSubmit>
+                        </LargeBtnWhite>
                     </LoginForm>
                 </TitleDiv>
             </AuthContainer>
