@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Main } from "./Todo";
+import { Main } from "./home/Todo";
 import { useForm } from "react-hook-form";
 import { AuthContainer, AuthErrorM, AuthInputDiv, FormLabel, LoginForm, LoginI, LoginInput, LargeBtnWhite, TitleDiv, TitleSpan } from "./AuthLogin";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";

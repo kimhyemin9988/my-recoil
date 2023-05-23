@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { Category, Todos } from '../Atoms';
+import { Category, Todos } from './Atoms';
 import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom';
-import { AsBtn, customStyles } from './CategoryAndList';
-import { Container, CreateToForm, TodoInput } from './CreateToDo';
-import { Main } from "../Todo";
+import { AsBtn, customStyles } from './home/CategoryAndList';
+import { Container, CreateToForm, TodoInput } from './home/CreateToDo';
+import { Main } from "./home/Todo";
 export interface categories {
   Category: string;
   /*   categories:string; */

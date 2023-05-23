@@ -1,12 +1,12 @@
 import { HashRouter as Router, createBrowserRouter } from 'react-router-dom';
 import App from './App';
-import Todo from './Todo';
-import EditingCategory from "./component/EditingCategory";
+import Todo from './home/Todo';
+import EditingCategory from "./EditingCategory";
 import NotFound from './component/Notfound';
 import AuthJoin from './AuthJoin';
 import AuthLogin from './AuthLogin';
 import PrivateRoute from './PrivateRoute';
-import Profile from './component/Profile';
+import Profile from './profile/Profile';
 
 const RouterApp = createBrowserRouter([
     {

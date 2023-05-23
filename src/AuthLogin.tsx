@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Main } from "./Todo";
-import { Container, SubmitInput, TodoInput } from "./component/CreateToDo";
+import { Main } from "./home/Todo";
+import { Container, SubmitInput, TodoInput } from "./home/CreateToDo";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
