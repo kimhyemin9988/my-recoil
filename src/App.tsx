@@ -1,6 +1,6 @@
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import Todo from './Todo';
+import Todo from './home/Todo';
 import AuthLogin from './AuthLogin';
 import { useState, useEffect } from "react";
 import { authService } from './todoFirebase';

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { GlobalStyle } from "../App";
 import {  AuthInputDiv, LargeBtnDark } from "../AuthLogin";
-import { Main } from "../Todo";
+import { Main } from "../home/Todo";
 import styled from "styled-components";
 
 interface MiniCheckI {

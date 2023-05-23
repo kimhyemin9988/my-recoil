@@ -1,10 +1,12 @@
-import { Main } from "../Todo";
+import { Main } from "../home/Todo";
 import { AuthContainer, LargeBtnWhite, LargeBtnDark, TitleDiv, TitleSpan } from "../AuthLogin";
-import { ImageCircle } from "./ProfileMini";
+import { ImageCircle } from "../home/ProfileMini";
 import styled from "styled-components";
 import { authService } from "../todoFirebase";
 import { useState, useEffect } from 'react';
 import ProfileImgChange from "./PhotoURLUpdate";
+import { useNavigate } from "react-router-dom";
+import DeleteUser from "./DeleteUser";
 
 export const ImageCircleBig = styled(ImageCircle)`
   width: 6rem;
@@ -26,14 +28,14 @@ export interface IuserData {
 const ProfileImageBtnDiv = styled.div`
     width: 120px;
     height: 20px;
-    background-color: #503F47;
-    color:  #E7F4FC;
+    background-color: #13a4ff;
+    color: white;
     cursor: pointer;
     border-radius: 0.3rem;
-    font-weight: 900;
+    font-weight: 500;
     text-align: center;
     margin: 10px;
-    padding: 3px;
+    padding: 5px;
 `
 
 const ProfileImageBtnInput = styled.input`
@@ -56,6 +58,8 @@ interface IFileReader {
 }
 
 const Profile = () => {
+    const navigator = useNavigate();
+
     const user = authService.currentUser as IuserData;
     const [attach, setAttach] = useState("");
     const [changeImg, setChangeImg] = useState(false);
@@ -104,8 +108,9 @@ const Profile = () => {
                     <h1>{user.email}</h1>
                     <TitleDiv>
                         <ProfileImgChange attach={attach} changeImg={changeImg} userUid={user.uid}></ProfileImgChange>
-                        <LargeBtnWhite as="button">취소</LargeBtnWhite>
+                        <LargeBtnWhite as="button" onClick={()=>navigator("/home")}>취소</LargeBtnWhite>
                     </TitleDiv>
+                    <DeleteUser></DeleteUser>
                 </Main>
             </AuthContainer>
         </Main>

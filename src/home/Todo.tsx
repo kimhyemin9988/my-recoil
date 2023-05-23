@@ -1,11 +1,11 @@
-import CreateToDo from './component/CreateToDo';
-import CategoryAndList from './component/CategoryAndList';
+import CreateToDo from './CreateToDo';
+import CategoryAndList from './CategoryAndList';
 import styled from 'styled-components';
 import { Helmet } from "react-helmet";
 import { Outlet } from 'react-router-dom';
-import ProfileMiniCircle from './component/ProfileMini';
-import { IuserData } from './component/Profile';
-import { authService } from './todoFirebase';
+import ProfileMiniCircle from './ProfileMini';
+import { IuserData } from '../profile/Profile';
+import { authService } from '../todoFirebase';
 
 const Header = styled.header`
     width: 100%;

@@ -3,8 +3,8 @@ import Select from 'react-select';
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { Category, Todos, IToDo } from "../Atoms";
-import { SubmitInput } from "./CreateToDo";
-import { customStyles } from "./CategoryAndList";
+import { SubmitInput } from "../home/CreateToDo";
+import { customStyles } from "../home/CategoryAndList";
 
 const MiniForm = styled.form`
   width:350px;

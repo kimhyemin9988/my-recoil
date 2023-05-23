@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useRecoilValue } from "recoil";
 import Select, { SingleValue } from 'react-select';
 import { Category, ICategory, Todos } from '../Atoms';
-import TodoRender from './TodoRender';
+import TodoRender from '../component/TodoRender';
 import { Link } from 'react-router-dom';
 import { SubmitInput, Container } from "./CreateToDo";
 import styled from 'styled-components';
