@@ -1,11 +1,7 @@
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { createGlobalStyle } from 'styled-components';
-import Todo from './home/Todo';
-import AuthLogin from './AuthLogin';
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { createGlobalStyle } from "styled-components";
 import { useState, useEffect } from "react";
-import { authService } from './todoFirebase';
-import { Navigate, redirect } from "react-router-dom";
-import PrivateRoute from './PrivateRoute';
+import { authService } from "./todoFirebase";
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -65,29 +61,27 @@ a{
     color: inherit;
     text-decoration: none;
 }
-`
+`;
 
 const App = () => {
-	const location = useLocation();
-	const navigate = useNavigate();
-	const [inital, setinital] = useState(false); // 초기화
-	useEffect(() => {
-		if (location.pathname === "/") {
-			authService.onAuthStateChanged((user) => { 
-				user ? navigate("/home") : navigate("/login");
-			})
-		}
-		setinital((prev) => prev = true);
-	}, []);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [inital, setinital] = useState(false); // 초기화
+  useEffect(() => {
+    if (location.pathname === "/") {
+      authService.onAuthStateChanged((user) => {
+        user ? navigate("/home") : navigate("/login");
+      });
+    }
+    setinital((prev) => (prev = true));
+  }, []);
 
-	return (
-		<>
-			<GlobalStyle />
-			{inital &&
-				<Outlet></Outlet>}
-
-		</>
-	);
-}
+  return (
+    <>
+      <GlobalStyle />
+      {inital && <Outlet></Outlet>}
+    </>
+  );
+};
 
 export default App;
