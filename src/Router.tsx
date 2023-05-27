@@ -7,6 +7,7 @@ import AuthJoin from "./AuthJoin";
 import AuthLogin from "./AuthLogin";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "./profile/Profile";
+import FindPassword from "./FindPassword";
 
 const RouterApp = createBrowserRouter(
   [
@@ -21,6 +22,10 @@ const RouterApp = createBrowserRouter(
         {
           path: "login",
           element: <AuthLogin />, // 로그인
+        },
+        {
+          path:"findpassword",
+          element:<FindPassword></FindPassword>,
         },
         /* 보호하고 싶은 페이지 */
         {
