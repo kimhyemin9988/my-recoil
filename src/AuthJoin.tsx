@@ -138,7 +138,7 @@ const AuthJoin = () => {
               ></LoginInput>
               <AuthErrorM>{errors.passwordConfirm?.message}</AuthErrorM>
             </AuthInputDiv>
-            <LargeBtnWhite as="button" type="submit">
+            <LargeBtnWhite type="submit">
               <h1>회원 가입</h1>
             </LargeBtnWhite>
           </LoginForm>

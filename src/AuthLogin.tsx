@@ -142,28 +142,30 @@ const AuthLogin = () => {
               <AuthErrorM>{errors.userPassword?.message}</AuthErrorM>
             )}
             <AuthErrorM>{loginError}</AuthErrorM>
-            <LargeBtnWhite as="button" type="submit">
+            <LargeBtnWhite type="submit">
               <h1>이메일 로그인</h1>
             </LargeBtnWhite>
           </LoginForm>
         </TitleDiv>
         <hr></hr>
         <TitleDiv>
-          <LargeBtnDark type="button">
+          <LargeBtnDark>
             <h1>구글 로그인</h1>
           </LargeBtnDark>
-          <LargeBtnDark type="button">
+          <LargeBtnDark>
             <h1>깃허브 로그인</h1>
           </LargeBtnDark>
         </TitleDiv>
         <hr></hr>
         <TitleDiv>
           <Link to="../join">
-            <LargeBtnDark type="button">회원 가입</LargeBtnDark>
+            <LargeBtnDark>회원 가입</LargeBtnDark>
           </Link>
-          <LargeBtnDark type="button">
-            <h1>비밀번호 찾기</h1>
-          </LargeBtnDark>
+          <Link to="../findpassword">
+            <LargeBtnDark>
+              <h1>비밀번호 찾기</h1>
+            </LargeBtnDark>
+          </Link>
         </TitleDiv>
       </AuthContainer>
     </Main>
