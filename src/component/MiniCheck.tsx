@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AuthInputDiv, LargeBtnDark } from "../AuthLogin";
 import { Main } from "../home/Todo";
 
-interface MiniCheckI {
+export interface MiniCheckI {
   text: string[];
 }
 
