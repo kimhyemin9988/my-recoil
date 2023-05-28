@@ -4,7 +4,7 @@ import { Main } from "./home/Todo";
 import { Container, TodoInput } from "./home/CreateToDo";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { authService } from "./todoFirebase";
 
 export const TitleSpan = styled.span`
@@ -113,6 +113,21 @@ const AuthLogin = () => {
       }
     }
   };
+
+  const socialLogin = async (event: React.MouseEvent) => {
+    const { currentTarget: { id } } = event;
+    let provider;
+    if (id === "google") {
+      provider = new GoogleAuthProvider();
+    }
+    else if (id === "github") {
+      provider = new GithubAuthProvider();
+    }
+    provider !== undefined && 
+    await signInWithPopup(authService, provider);
+  }
+
+
   return (
     <Main>
       <AuthContainer>
@@ -149,11 +164,11 @@ const AuthLogin = () => {
         </TitleDiv>
         <hr></hr>
         <TitleDiv>
-          <LargeBtnDark>
-            <h1>구글 로그인</h1>
+          <LargeBtnDark id="google" onClick={socialLogin}>
+            구글 로그인
           </LargeBtnDark>
-          <LargeBtnDark>
-            <h1>깃허브 로그인</h1>
+          <LargeBtnDark id="github" onClick={socialLogin}>
+            깃허브 로그인
           </LargeBtnDark>
         </TitleDiv>
         <hr></hr>
