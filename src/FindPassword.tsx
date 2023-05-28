@@ -16,7 +16,7 @@ const DisableBtn = styled(LargeBtnWhite) <{ disabled?: boolean }>`
 
 const FindPassword = () => {
     const [activeBtn, setactiveBtn] = useState(false);
-    const [emailResponseError, setemailResponseError] = useState([""]);
+    const [emailResponse, setemailResponse] = useState([""]);
 
     const [cycle, setCycle] = useState<boolean>(false);
     const {
@@ -31,6 +31,7 @@ const FindPassword = () => {
     const sendEmail = async (data: { userEmail: string }) => {
         try {
             await sendPasswordResetEmail(authService, data.userEmail);
+            setemailResponse((prev) => prev = ["이메일이 발송되었습니다."]);
         } catch (error: any) {
             const errorMessage = ((error: any) => {
                 switch (error.code) {
@@ -42,9 +43,9 @@ const FindPassword = () => {
                         return ["비밀번호 재설정 이메일을 보내는 것에 실패 하였습니다.", "다시 한 번 시도해 주세요."];
                 }
             })(error);
-            setemailResponseError((prev) => prev = errorMessage);
-            setCycle((prev) => prev = true);
+            setemailResponse((prev) => prev = errorMessage);
         }
+        setCycle((prev) => prev = true);
     };
 
     const onBlurError = () => {
@@ -64,7 +65,7 @@ const FindPassword = () => {
 
     return (
         <Main>
-            {cycle && <Modal text={emailResponseError} setCycle={setCycle}></Modal>}
+            {cycle && <Modal text={emailResponse} setCycle={setCycle}></Modal>}
             <AuthContainer>
                 <TitleDiv>
                     <TitleSpan>비밀번호 찾기</TitleSpan>
