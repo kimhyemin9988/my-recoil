@@ -7,10 +7,12 @@ const PrivateRoute = () => {
   //인증여부
   const [inital, setinital] = useState(false); // 초기화
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     authService.onAuthStateChanged(async (user) => {
-      user ?? navigate("/login");
+      setTimeout(() => {
+        user ?? navigate("/login");
+      }, 100);
       setinital((prev) => (prev = true));
     });
   }, []);
