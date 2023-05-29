@@ -11,12 +11,12 @@
     할일을 추가 및 삭제 할 수 있습니다.
     카테고리를 추가 및 삭제 할 수 있습니다.
     분류된 할 일을 다른 카테고리로 변경할 수 있습니다.">
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="/manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="/manifest" href="%PUBLIC_URL%/manifest.json" />
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -26,6 +26,40 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script checks to see if a redirect is present in the query string,
+    // converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    /*
+    이 스크립트는 쿼리 문자열에 리디렉션이 있는지 확인합니다.
+    올바른 URL로 다시 변환하여
+    window.history.replaceState(...)를 사용하는 브라우저의 기록,
+    History.replaceState() : 현재 history를 수정해 메소드의 매개 변수에 전달 된 stateObj, title, URL로 대체한다
+    브라우저가 새 URL을로드하려고 시도하지 않습니다.
+    */
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    /*
+    단일 페이지 앱이 이 파일에서 더 아래로 로드되면
+    올바른 URL은 브라우저의 기록에서 기다리고 있습니다.
+    그에 따라 라우팅할 단일 페이지 앱입니다.
+    */
+    (function (l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function (s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
+      }
+    }(window.location))
+  </script>
   <title>React App</title>
 </head>
 
