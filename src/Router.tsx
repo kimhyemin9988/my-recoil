@@ -12,7 +12,7 @@ import FindPassword from "./FindPassword";
 const RouterApp = createBrowserRouter(
   [
     {
-      path: "/",
+      path: "",
       element: <App />,
       children: [
         {
