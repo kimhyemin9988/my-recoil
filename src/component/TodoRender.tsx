@@ -5,6 +5,10 @@ import styled from "styled-components";
 import { Category, Todos, IToDo } from "../Atoms";
 import { SubmitInput } from "../home/CreateToDo";
 import { customStyles } from "../home/CategoryAndList";
+import { authService, dbService } from "../todoFirebase";
+import { IuserData } from "../profile/Profile";
+import { collection, deleteDoc, getDocs, query, where } from "firebase/firestore";
+import collectionGet from "../home/collectionGet";
 
 const MiniForm = styled.form`
   width: 350px;
@@ -18,6 +22,11 @@ const AsBtnMargin = styled(SubmitInput)`
 `;
 
 const TodoRender = ({ text, id, category }: IToDo) => {
+  const user = authService.currentUser as IuserData;
+
+  /* Cloud Firestore의 참조 설정 */
+  const usersCollectionRef = collection(dbService, `${user.uid}`);
+  const q = query(usersCollectionRef, where("id", "==", id));
   const setTodosArray = useSetRecoilState(Todos);
 
   /* 카테고리 변경 on off */
@@ -30,10 +39,10 @@ const TodoRender = ({ text, id, category }: IToDo) => {
   const [handleValue, setHandleValue] = useState();
   /* 선택 */
   const handleChange = (e: any) => {
-    console.log(e);
     const { value } = e; // value ==  "Todo"
-    setHandleValue(() => value);
+    setHandleValue((prev) => prev = value);
   };
+
   /* 제출 */
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -49,15 +58,13 @@ const TodoRender = ({ text, id, category }: IToDo) => {
     togglecategories();
   };
   /* 삭제 */
-  const deleteList = (event: any) => {
+  const deleteList = async (event: any) => {
     event.preventDefault();
-    setTodosArray((oldArray) => {
-      const targetIndex = oldArray.findIndex((item) => item.id === id);
-      return [
-        ...oldArray.slice(0, targetIndex),
-        ...oldArray.slice(targetIndex + 1),
-      ];
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc) => {
+      await deleteDoc(doc.ref);
     });
+    collectionGet(category, user.uid, setTodosArray);
   };
 
   return (

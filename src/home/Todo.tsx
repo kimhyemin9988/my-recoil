@@ -32,7 +32,6 @@ export const Main = styled.div`
 `;
 const Todo = () => {
   const user = authService.currentUser as IuserData;
-
   return (
     <>
       <Helmet>
@@ -43,9 +42,9 @@ const Todo = () => {
         <ProfileMiniCircle userPhotoURL={user.photoURL}></ProfileMiniCircle>
       </Header>
       <Main>
-        <CreateToDo></CreateToDo>
+        <CreateToDo userId={user.uid}></CreateToDo>
         <hr />
-        <CategoryAndList></CategoryAndList>
+        <CategoryAndList userId={user.uid}></CategoryAndList>
       </Main>
     </>
   );

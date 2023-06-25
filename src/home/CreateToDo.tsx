@@ -1,7 +1,10 @@
 import { Todos } from "../Atoms";
-import { useSetRecoilState } from "recoil";
+import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { addDoc, collection, doc, query, setDoc, where } from "firebase/firestore";
+import { dbService } from "../todoFirebase";
+import { useState } from "react";
 
 export interface formDate {
   Todos: string;
@@ -59,21 +62,21 @@ const ErrorM = styled.div`
   height: 10px;
 `;
 
-const CreateToDo = () => {
+const CreateToDo = ({ userId }: { userId: string }) => {
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm<formDate>();
-  const setTodosArray = useSetRecoilState(Todos);
-  const onSubmitTodos = ({ Todos }: any) => {
-    setTodosArray((oldTodos) => [
-      { text: Todos, id: Date.now(), category: "Todo" },
-      ...oldTodos,
-    ]);
+
+  /* Cloud Firestore의 참조 설정 */
+  const usersCollectionRef = collection(dbService, `${userId}`);
+  const onSubmitTodos = async ({ Todos }: formDate) => {
+    const docRef = await addDoc(usersCollectionRef, { text: Todos, id: Date.now(), category: "Todo" });
     setValue("Todos", "");
   };
+
   return (
     <Container>
       <CreateToForm onSubmit={handleSubmit(onSubmitTodos)}>

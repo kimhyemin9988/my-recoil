@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import Select, { SingleValue } from "react-select";
 import { Category, ICategory, Todos } from "../Atoms";
 import TodoRender from "../component/TodoRender";
 import { Link } from "react-router-dom";
 import { SubmitInput, Container } from "./CreateToDo";
 import styled from "styled-components";
+import collectionGet from "./collectionGet";
 
 const MainContainer = styled(Container)`
   width: 80%;
@@ -62,16 +63,17 @@ export const customStyles = {
   }),
 };
 
-const CategoryAndList = () => {
+const CategoryAndList = ({ userId }: { userId: string }) => {
   const oldCategory = useRecoilValue(Category);
   const [handleValue, setHandleValue] = useState<string>();
-  const todosArray = useRecoilValue(Todos);
-  // set value for default selection
-  // handle onChange event of the dropdown and get value
-  // React-select get value on change
-  const handleChange = (e: SingleValue<ICategory>) => {
+  
+  const [todosArray, setTodosArray] = useRecoilState(Todos);
+
+  const handleChange = async (e: SingleValue<ICategory>) => {
     const value = e?.value; // value ==  "Todo"
-    setHandleValue((prev) => (prev = value));
+    setHandleValue((prev) => prev = value);
+    //data 가져오기
+    collectionGet(value, userId, setTodosArray);
   };
   return (
     <>
