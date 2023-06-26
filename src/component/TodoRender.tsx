@@ -7,7 +7,7 @@ import { SubmitInput } from "../home/CreateToDo";
 import { customStyles } from "../home/CategoryAndList";
 import { authService, dbService } from "../todoFirebase";
 import { IuserData } from "../profile/Profile";
-import { collection, deleteDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, deleteDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import collectionGet from "../home/collectionGet";
 
 const MiniForm = styled.form`
@@ -44,18 +44,16 @@ const TodoRender = ({ text, id, category }: IToDo) => {
   };
 
   /* 제출 */
-  const onSubmit = (event: any) => {
+  const onSubmit = async (event: any) => {
     event.preventDefault();
-    setTodosArray((oldArray) => {
-      const targetIndex = oldArray.findIndex((item) => item.id === id);
-      const newTodo = { text, id, category: handleValue as any };
-      return [
-        ...oldArray.slice(0, targetIndex),
-        newTodo,
-        ...oldArray.slice(targetIndex + 1),
-      ];
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc) => {
+      await updateDoc(doc.ref, {
+        category: handleValue
+      });
     });
     togglecategories();
+    collectionGet(category, user.uid, setTodosArray);
   };
   /* 삭제 */
   const deleteList = async (event: any) => {
