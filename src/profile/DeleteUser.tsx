@@ -1,6 +1,6 @@
 import { deleteUser } from "firebase/auth";
 import { LargeBtnWhite } from "../AuthLogin";
-import { authService } from "../todoFirebase";
+import { authService, dbService } from "../todoFirebase";
 import { useNavigate } from "react-router-dom";
 import { storage } from "../todoFirebase";
 import {
@@ -10,6 +10,7 @@ import {
   listAll,
   ref,
 } from "firebase/storage";
+import { collection, deleteDoc, getDocs } from "firebase/firestore";
 
 const DeleteUser = () => {
   const user = authService.currentUser;
@@ -35,11 +36,18 @@ const DeleteUser = () => {
   };
 
   const listAllFiles = async () => {
+    //storage 삭제
     const desertRef = ref(storage, `${user?.uid}`);
     const response = await listAll(desertRef);
     if (response.items.length !== 0) {
       deleteUserFile(response);
     }
+    //collection 삭제
+    const usersCollectionRef = collection(dbService, `${user?.uid}`);
+    const querySnapshot = await getDocs(usersCollectionRef);
+    querySnapshot.forEach(async (doc) => {
+      await deleteDoc(doc.ref);
+    });
   };
 
   const deleteUserFx = async () => {
