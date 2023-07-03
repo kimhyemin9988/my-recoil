@@ -13,8 +13,9 @@ import {
   TitleSpan,
 } from "./AuthLogin";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { authService } from "./todoFirebase";
+import { authService, dbService } from "./todoFirebase";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 interface JoinI extends LoginI {
   passwordConfirm: string;
@@ -42,11 +43,19 @@ const AuthJoin = () => {
         data.userPassword
       );
       //회원가입 즉시 로그인됨.
+      //기본 프로파일 설정 및 category문서 생성
       authService.currentUser &&
-        (await updateProfile(authService.currentUser, {
+        await updateProfile(authService.currentUser, {
           displayName: data.userName,
           photoURL: basicUrl,
-        }));
+        });
+      await setDoc(doc(dbService, `${authService.currentUser?.uid}`, "category"), {
+        category: [
+          { value: "Todo", label: "Todo" },
+          { value: "Done", label: "Done" },
+          { value: "Doing", label: "Doing" },
+        ]
+      });
       alert("회원가입에 성공했습니다");
       navigate("/home");
     } catch (error: any) {

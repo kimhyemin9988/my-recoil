@@ -1,34 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { Category, Todos } from "./Atoms";
+import { useRecoilState } from "recoil";
+import { Category } from "./Atoms";
 import Select from "react-select";
 import { Link, useNavigate } from "react-router-dom";
 import { AsBtn } from "./home/CategoryAndList";
 import { Container, CreateToForm, TodoInput } from "./home/CreateToDo";
 import { Main } from "./home/Todo";
+import { arrayRemove, arrayUnion, collection, doc, getDocs, onSnapshot, query, updateDoc, where } from "firebase/firestore";
+import { authService, dbService } from "./todoFirebase";
 export interface categories {
   Category: string;
 }
 
 const EditingCategory = () => {
   const navigate = useNavigate();
+  const docRef = doc(dbService, `${authService.currentUser?.uid}`, "category");
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
   } = useForm<categories>();
-  const [oldCategory, setoldCategory] = useRecoilState(Category);
+
+  const [oldCategory, setOldCategory] = useRecoilState(Category);
+
+  useEffect(() => {
+    onSnapshot(docRef, (doc) => {
+      setOldCategory(doc.data()?.category);
+    })
+  }, []);
+
   const [addBoolean, setaddCategory] = useState(false);
   const [deleteBoolean, setdeleteCategory] = useState(false);
 
-  const todosArray = useRecoilValue(Todos);
-
   /* output : form의 모든 객체 */
-  const onSubmitCate = ({ Category }: any) => {
-    setoldCategory((oldCategory) => {
-      return [{ value: Category, label: Category }, ...oldCategory];
+  const onSubmitCate = async ({ Category }: any) => {
+    await updateDoc(docRef, {
+      category: arrayUnion({ value: Category, label: Category })
     });
     setValue("Category", "");
     addCategory();
@@ -44,6 +53,7 @@ const EditingCategory = () => {
 
   /* 리스트 카테고리 변경 */
   const [handleValue, setHandleValue] = useState();
+
   /* 삭제할 카테고리 선택 */
   const handleChange = (e: any) => {
     console.log(e);
@@ -51,23 +61,20 @@ const EditingCategory = () => {
     setHandleValue(() => value);
   };
   /* 삭제할 카테고리 제출 */
-  const onSubmit = (event: any) => {
+  const onSubmit = async (event: any) => {
     event.preventDefault();
-    if (
-      todosArray.filter((item) => item.category === handleValue).length !== 0
-    ) {
+    const q = query(collection(dbService, `${authService.currentUser?.uid}`), where("category", "==", `${handleValue}`));
+    const querySnapshot = await getDocs(q);
+    if (querySnapshot.size === 0) {
+      await updateDoc(docRef,
+        {
+          category: arrayRemove({ value: `${handleValue}`, label: `${handleValue}` })
+        }
+      );
+    }
+    else {
       alert("해당하는 카테고리 안에 목록이 있습니다! 삭제할 수 없습니다");
-      navigate("/");
-    } else {
-      setoldCategory((oldArray) => {
-        const targetIndex = oldArray.findIndex(
-          (item) => item.value === handleValue
-        );
-        return [
-          ...oldArray.slice(0, targetIndex),
-          ...oldArray.slice(targetIndex + 1),
-        ];
-      });
+      navigate("/home");
     }
     deleteCategory();
   };
@@ -85,7 +92,6 @@ const EditingCategory = () => {
           <Link to="../home">
             <AsBtn as="button">홈으로</AsBtn>
           </Link>
-          {/* 목록안에 element가 있는 경우 카테고리를 삭제 할 수 없음 */}
           <div>
             {addBoolean ? (
               <CreateToForm

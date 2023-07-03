@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import Select, { SingleValue } from "react-select";
 import { Category, ICategory, Todos } from "../Atoms";
 import TodoRender from "../component/TodoRender";
@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { SubmitInput, Container } from "./CreateToDo";
 import styled from "styled-components";
 import collectionGet from "./collectionGet";
+import { authService, dbService } from "../todoFirebase";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const MainContainer = styled(Container)`
   width: 80%;
@@ -64,9 +66,17 @@ export const customStyles = {
 };
 
 const CategoryAndList = ({ userId }: { userId: string }) => {
-  const oldCategory = useRecoilValue(Category);
+  const docRef = doc(dbService, `${authService.currentUser?.uid}`, "category");
+  //const docSnap = await getDoc(docRef);
+  const [oldCategory, setOldCategory] = useRecoilState(Category);
+  useEffect(() => {
+    onSnapshot(docRef, (doc) => {
+      setOldCategory(doc.data()?.category);
+    })
+  }, []);
+
   const [handleValue, setHandleValue] = useState<string>();
-  
+
   const [todosArray, setTodosArray] = useRecoilState(Todos);
 
   const handleChange = async (e: SingleValue<ICategory>) => {
@@ -91,13 +101,14 @@ const CategoryAndList = ({ userId }: { userId: string }) => {
           {todosArray &&
             todosArray.map((toDo) => {
               const { category } = toDo;
-              if (handleValue === category)
+              if (handleValue === category) {
                 return (
                   <Li key={toDo.id}>
                     <TodoP>{toDo.text}</TodoP>
                     <TodoRender {...toDo}></TodoRender>
                   </Li>
                 );
+              }
             })}
         </Ul>
       </MainContainer>

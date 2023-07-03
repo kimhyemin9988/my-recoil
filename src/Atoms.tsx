@@ -21,12 +21,8 @@ export interface ICategory {
   value: string;
   label: string;
 }
-export const Category = atom<ICategory[]>({
+
+export const Category = atom<ICategory[] | undefined>({
   key: "Category",
-  default: [
-    { value: "Todo", label: "Todo" },
-    { value: "Done", label: "Done" },
-    { value: "Doing", label: "Doing" },
-  ],
-  effects_UNSTABLE: [persistAtom],
-});
+  default: undefined,
+});  
