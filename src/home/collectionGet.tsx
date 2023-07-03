@@ -1,4 +1,4 @@
-import { collection, query, where, onSnapshot, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { IToDo } from "../Atoms";
 import { SetterOrUpdater } from "recoil";
 import { dbService } from "../todoFirebase";

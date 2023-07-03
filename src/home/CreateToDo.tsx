@@ -1,10 +1,7 @@
-import { Todos } from "../Atoms";
-import { useResetRecoilState, useSetRecoilState } from "recoil";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { addDoc, collection, doc, query, setDoc, where } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { dbService } from "../todoFirebase";
-import { useState } from "react";
 
 export interface formDate {
   Todos: string;
@@ -73,7 +70,7 @@ const CreateToDo = ({ userId }: { userId: string }) => {
   /* Cloud Firestore의 참조 설정 */
   const usersCollectionRef = collection(dbService, `${userId}`);
   const onSubmitTodos = async ({ Todos }: formDate) => {
-    const docRef = await addDoc(usersCollectionRef, { text: Todos, id: Date.now(), category: "Todo" });
+    await addDoc(usersCollectionRef, { text: Todos, id: Date.now(), category: "Todo" });
     setValue("Todos", "");
   };
 

@@ -89,28 +89,26 @@ const AuthLogin = () => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState<string>();
   const onSubmit = async (data: LoginI) => {
-    {
-      try {
-        // User is signed in
-        await signInWithEmailAndPassword(
-          authService,
-          data.userEmail,
-          data.userPassword
-        );
-        navigate("/home");
-      } catch (error: any) {
-        let loginError = (() => {
-          switch (error.code) {
-            case "auth/wrong-password":
-              return "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.";
-            case "auth/timeout":
-              return "네트워크 연결에 실패 하였습니다.";
-            default:
-              return "알 수 없는 이유로 로그인에 실패 하였습니다.";
-          }
-        })();
-        setLoginError((prev) => (prev = loginError));
-      }
+    try {
+      // User is signed in
+      await signInWithEmailAndPassword(
+        authService,
+        data.userEmail,
+        data.userPassword
+      );
+      navigate("/home");
+    } catch (error: any) {
+      let loginError = (() => {
+        switch (error.code) {
+          case "auth/wrong-password":
+            return "아이디(로그인 전용 아이디) 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.";
+          case "auth/timeout":
+            return "네트워크 연결에 실패 하였습니다.";
+          default:
+            return "알 수 없는 이유로 로그인에 실패 하였습니다.";
+        }
+      })();
+      setLoginError((prev) => (prev = loginError));
     }
   };
 
@@ -123,8 +121,8 @@ const AuthLogin = () => {
     else if (id === "github") {
       provider = new GithubAuthProvider();
     }
-    provider !== undefined && 
-    await signInWithPopup(authService, provider);
+    provider !== undefined &&
+      await signInWithPopup(authService, provider);
   }
 
 
